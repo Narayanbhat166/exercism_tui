@@ -1,5 +1,5 @@
 use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture},
+    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
@@ -8,19 +8,20 @@ use tui::{
     backend::{Backend, CrosstermBackend},
     layout::{Alignment, Constraint, Direction, Layout},
     style::{Color, Modifier, Style},
-    widgets::{Block, BorderType, Borders, List, ListItem, Paragraph, Row, Table},
+    widgets::{Block, BorderType, Borders, List, ListItem, ListState, Paragraph, Row, Table},
     Frame, Terminal,
 };
 
-#[derive(Default)]
-struct App {
-    throbber_state: throbber_widgets_tui::ThrobberState,
-}
+use crate::{
+    layout::divider::layout_divider,
+    widgets::{draw_blocks, listblock::StatefulList},
+};
 
-impl App {
-    fn on_tick(&mut self) {
-        self.throbber_state.calc_next();
-    }
+mod layout;
+mod widgets;
+
+struct App {
+    menu_list: widgets::listblock::StatefulList<&'static str>,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -50,9 +51,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+impl App {
+    fn new() -> App {
+        App {
+            menu_list: StatefulList::with_items(vec!["Dashboard", "All tracks", "My tracks"]),
+        }
+    }
+}
+
 fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     let tick_rate = Duration::from_millis(100);
-    let mut app = App::default();
+    let mut app = App::new();
     let mut last_tick = std::time::Instant::now();
 
     loop {
@@ -64,147 +73,95 @@ fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
 
         if crossterm::event::poll(timeout)? {
             if let crossterm::event::Event::Key(key) = crossterm::event::read()? {
-                if let crossterm::event::KeyCode::Char('q') = key.code {
-                    return Ok(());
+                match key.code {
+                    KeyCode::Char('q') => return Ok(()),
+                    KeyCode::Up => app.menu_list.previous(),
+                    KeyCode::Down => app.menu_list.next(),
+                    _ => {}
                 }
             }
         }
         if last_tick.elapsed() >= tick_rate {
-            app.on_tick();
             last_tick = std::time::Instant::now();
         }
     }
 }
 
-fn ui<B: Backend>(f: &mut Frame<B>, _app: &mut App) {
-    let main_terminal_size = f.size();
+fn ui<B: Backend>(frame: &mut Frame<B>, app: &mut App) {
+    let main_terminal_size = frame.size();
 
-    let main_inner_layout = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints(
-            [
-                Constraint::Length(4),
-                Constraint::Min(10),
-                Constraint::Length(3),
-            ]
-            .as_ref(),
-        )
-        .margin(1)
-        .split(main_terminal_size);
+    let layout = layout_divider(main_terminal_size);
+    draw_blocks(frame, layout)
 
-    let top_block = Paragraph::new("Welcome to the exercism cli")
-        .alignment(Alignment::Center)
-        .block(
-            Block::default()
-                .borders(Borders::ALL)
-                .border_type(BorderType::Rounded),
-        );
+    // f.render_widget(top_block, main_inner_layout[0]);
 
-    f.render_widget(top_block, main_inner_layout[0]);
+    // let help_block = Table::new(vec![
+    //     // Row can be created from simple strings.
+    //     Row::new(vec!["q", "quit"]),
+    //     Row::new(vec!["↓", "move down"]),
+    //     // You can style the entire row.
+    // ])
+    // // You can set the style of the entire Table.
+    // .style(Style::default().fg(Color::White))
+    // // As any other widget, a Table can be wrapped in a Block.
+    // .block(Block::default().title("Help").borders(Borders::ALL))
+    // // Columns widths are constrained in the same way as Layout...
+    // .widths(&[Constraint::Length(2), Constraint::Length(5)])
+    // // ...and they can be separated by a fixed spacing.
+    // .column_spacing(1)
+    // // If you wish to highlight a row in any specific way when it is selected...
+    // .highlight_style(Style::default().add_modifier(Modifier::BOLD))
+    // // ...and potentially show a symbol in front of the selection.
+    // .highlight_symbol(">>");
 
-    let middle_chunks = Layout::default()
-        .direction(Direction::Horizontal)
-        .constraints([Constraint::Percentage(40), Constraint::Percentage(60)])
-        .split(main_inner_layout[1]);
+    // f.render_widget(help_block, middle_left_layout[1]);
 
-    let middle_left_layout = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints([Constraint::Percentage(70), Constraint::Percentage(30)])
-        .split(middle_chunks[0]);
+    // let menu_items = app
+    //     .menu_list
+    //     .items
+    //     .iter()
+    //     .map(|item| ListItem::new(item.to_string()))
+    //     .collect::<Vec<ListItem>>();
 
-    let middle_left_tracks_layout = Layout::default()
-        .direction(Direction::Horizontal)
-        .constraints([
-            Constraint::Percentage(30),
-            Constraint::Percentage(30),
-            Constraint::Percentage(40),
-        ])
-        .split(middle_left_layout[0]);
-
-    let help_block = Table::new(vec![
-        // Row can be created from simple strings.
-        Row::new(vec!["q", "quit"]),
-        Row::new(vec!["↓", "move down"]),
-        // You can style the entire row.
-    ])
-    // You can set the style of the entire Table.
-    .style(Style::default().fg(Color::White))
-    // As any other widget, a Table can be wrapped in a Block.
-    .block(Block::default().title("Help").borders(Borders::ALL))
-    // Columns widths are constrained in the same way as Layout...
-    .widths(&[Constraint::Length(2), Constraint::Length(5)])
-    // ...and they can be separated by a fixed spacing.
-    .column_spacing(1)
-    // If you wish to highlight a row in any specific way when it is selected...
-    .highlight_style(Style::default().add_modifier(Modifier::BOLD))
-    // ...and potentially show a symbol in front of the selection.
-    .highlight_symbol(">>");
-
-    f.render_widget(help_block, middle_left_layout[1]);
-
-    let menu_items = [
-        ListItem::new("Dashboard"),
-        ListItem::new("Your tracks"),
-        ListItem::new("All tracks"),
-    ];
-
-    let menu_list = List::new(menu_items)
-        .block(
-            Block::default()
-                .borders(Borders::ALL)
-                .border_type(BorderType::Rounded)
-                .title("Menu"),
-        )
-        .style(Style::default().fg(Color::White))
-        .highlight_style(Style::default().add_modifier(Modifier::ITALIC))
-        .highlight_symbol("█");
-
-    let tracks_list = List::new([ListItem::new("Select a menu")])
-        .block(
-            Block::default()
-                .borders(Borders::ALL)
-                .border_type(BorderType::Rounded)
-                .title("Tracks"),
-        )
-        .style(Style::default().fg(Color::White))
-        .highlight_style(Style::default().add_modifier(Modifier::ITALIC))
-        .highlight_symbol("█");
-
-    let exercises_list = List::new([ListItem::new("Select a track")])
-        .block(
-            Block::default()
-                .borders(Borders::ALL)
-                .border_type(BorderType::Rounded)
-                .title("Exercises"),
-        )
-        .style(Style::default().fg(Color::White))
-        .highlight_style(Style::default().add_modifier(Modifier::ITALIC))
-        .highlight_symbol("█");
-
-    let action_block = Block::default()
-        .borders(Borders::ALL)
-        .border_type(BorderType::Rounded)
-        .title("Description");
-
-    f.render_widget(action_block, middle_chunks[1]);
-
-    f.render_widget(menu_list, middle_left_tracks_layout[0]);
-    f.render_widget(tracks_list, middle_left_tracks_layout[1]);
-    f.render_widget(exercises_list, middle_left_tracks_layout[2]);
-
-    // let loader = throbber_widgets_tui::Throbber::default()
-    //     .label("Loading user profile...")
-    //     .style(tui::style::Style::default().fg(tui::style::Color::White))
-    //     .throbber_style(
-    //         tui::style::Style::default().fg(tui::style::Color::White), // .add_modifier(tui::style::Modifier::BOLD),
+    // let menu_list = List::new(menu_items)
+    //     .block(
+    //         Block::default()
+    //             .borders(Borders::ALL)
+    //             .border_type(BorderType::Rounded)
+    //             .title("Menu"),
     //     )
-    //     .throbber_set(throbber_widgets_tui::BRAILLE_SIX)
-    //     .use_type(throbber_widgets_tui::WhichUse::Spin);
+    //     .style(Style::default().fg(Color::White))
+    //     .highlight_style(
+    //         Style::default()
+    //             .add_modifier(Modifier::ITALIC)
+    //             .fg(Color::Cyan),
+    //     )
+    //     .highlight_symbol("█ ");
 
-    // Bottom block with all default borders
-    let bottom_block = Block::default()
-        .borders(Borders::ALL)
-        .title("LOGS")
-        .border_type(BorderType::Rounded);
-    f.render_widget(bottom_block, main_inner_layout[2]);
+    // f.render_stateful_widget(
+    //     menu_list,
+    //     middle_left_tracks_layout[0],
+    //     &mut app.menu_list.state,
+    // );
+
+    // let exercises_list =
+
+    // let action_block = ;
+
+    // f.render_widget(action_block, middle_chunks[1]);
+    // f.render_widget(tracks_list, middle_left_tracks_layout[1]);
+    // f.render_widget(exercises_list, middle_left_tracks_layout[2]);
+
+    // // let loader = throbber_widgets_tui::Throbber::default()
+    // //     .label("Loading user profile...")
+    // //     .style(tui::style::Style::default().fg(tui::style::Color::White))
+    // //     .throbber_style(
+    // //         tui::style::Style::default().fg(tui::style::Color::White), // .add_modifier(tui::style::Modifier::BOLD),
+    // //     )
+    // //     .throbber_set(throbber_widgets_tui::BRAILLE_SIX)
+    // //     .use_type(throbber_widgets_tui::WhichUse::Spin);
+
+    // // Bottom block with all default borders
+
+    // f.render_widget(bottom_block, main_inner_layout[2]);
 }

@@ -4,7 +4,6 @@ use crossterm::{
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
 use std::{error::Error, io, time::Duration};
-use tui::widgets::Widget;
 use tui::{
     backend::{Backend, CrosstermBackend},
     layout::{Alignment, Constraint, Direction, Layout},
@@ -14,9 +13,10 @@ use tui::{
     Frame, Terminal,
 };
 
-pub fn dashboard() -> impl widgets::Widget {
+/// This bar will display any background actvity going on
+pub fn bottom_bar() -> impl widgets::Widget {
     Block::default()
         .borders(Borders::ALL)
+        .title("LOGS")
         .border_type(BorderType::Rounded)
-        .title("Description")
 }
