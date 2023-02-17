@@ -1,16 +1,10 @@
-use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
-    execute,
-    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
-};
-use std::{error::Error, io, time::Duration};
+
+
 use tui::{
-    backend::{Backend, CrosstermBackend},
-    layout::{Alignment, Constraint, Direction, Layout},
+    layout::{Constraint},
     style::{Color, Modifier, Style},
     widgets,
-    widgets::{Block, BorderType, Borders, List, ListItem, ListState, Paragraph, Row, Table},
-    Frame, Terminal,
+    widgets::{Block, Borders, Row, Table},
 };
 
 /// The help menu shown should be relative to the active menu

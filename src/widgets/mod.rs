@@ -7,19 +7,14 @@ pub mod tracks;
 
 use crate::layout::divider;
 
-use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
-    execute,
-    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
-};
-use std::{error::Error, io, time::Duration};
-use tui::layout::Rect;
+
+use std::{error::Error};
+
 use tui::{
-    backend::{Backend, CrosstermBackend},
-    layout::{Alignment, Constraint, Direction, Layout},
-    style::{Color, Modifier, Style},
-    widgets::{Block, BorderType, Borders, List, ListItem, ListState, Paragraph, Row, Table},
-    Frame, Terminal,
+    backend::{Backend},
+    layout::{Alignment},
+    widgets::{Block, BorderType, Borders, Paragraph},
+    Frame,
 };
 
 pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts) {

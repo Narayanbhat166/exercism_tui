@@ -6,9 +6,6 @@ use crossterm::{
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
-    layout::{Alignment, Constraint, Direction, Layout},
-    style::{Color, Modifier, Style},
-    widgets::{Block, BorderType, Borders, List, ListItem, ListState, Paragraph, Row, Table},
     Frame, Terminal,
 };
 
@@ -87,7 +84,7 @@ fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     }
 }
 
-fn ui<B: Backend>(frame: &mut Frame<B>, app: &mut App) {
+fn ui<B: Backend>(frame: &mut Frame<B>, _app: &mut App) {
     let main_terminal_size = frame.size();
 
     let layout = layout_divider(main_terminal_size);
