@@ -6,6 +6,8 @@ use crossterm::{
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
+    style::{Color, Modifier, Style},
+    widgets::{Block, BorderType, Borders, List, ListItem},
     Frame, Terminal,
 };
 
@@ -14,11 +16,13 @@ use crate::{
     widgets::{draw_blocks, listblock::StatefulList},
 };
 
+mod api;
 mod layout;
 mod widgets;
 
-struct App {
-    menu_list: widgets::listblock::StatefulList<&'static str>,
+pub struct App {
+    tracks: widgets::listblock::StatefulList<String>,
+    exercises: widgets::listblock::StatefulList<String>,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -51,7 +55,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 impl App {
     fn new() -> App {
         App {
-            menu_list: StatefulList::with_items(vec!["Dashboard", "All tracks", "My tracks"]),
+            tracks: StatefulList::with_items(vec!["Rust".to_string(), "Cpp".to_string()]),
+            exercises: StatefulList::with_items(vec![]),
         }
     }
 }
@@ -72,8 +77,8 @@ fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
             if let crossterm::event::Event::Key(key) = crossterm::event::read()? {
                 match key.code {
                     KeyCode::Char('q') => return Ok(()),
-                    KeyCode::Up => app.menu_list.previous(),
-                    KeyCode::Down => app.menu_list.next(),
+                    KeyCode::Up => app.tracks.previous(),
+                    KeyCode::Down => app.tracks.next(),
                     _ => {}
                 }
             }
@@ -84,43 +89,18 @@ fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     }
 }
 
-fn ui<B: Backend>(frame: &mut Frame<B>, _app: &mut App) {
+fn ui<B: Backend>(frame: &mut Frame<B>, app: &mut App) {
     let main_terminal_size = frame.size();
 
     let layout = layout_divider(main_terminal_size);
-    draw_blocks(frame, layout)
+    draw_blocks(frame, layout, app);
 
-    // f.render_widget(top_block, main_inner_layout[0]);
+    // let tracks = vec![
+    //     ListItem::new("Rust".to_string()),
+    //     ListItem::new("Cpp".to_string()),
+    // ];
 
-    // let help_block = Table::new(vec![
-    //     // Row can be created from simple strings.
-    //     Row::new(vec!["q", "quit"]),
-    //     Row::new(vec!["↓", "move down"]),
-    //     // You can style the entire row.
-    // ])
-    // // You can set the style of the entire Table.
-    // .style(Style::default().fg(Color::White))
-    // // As any other widget, a Table can be wrapped in a Block.
-    // .block(Block::default().title("Help").borders(Borders::ALL))
-    // // Columns widths are constrained in the same way as Layout...
-    // .widths(&[Constraint::Length(2), Constraint::Length(5)])
-    // // ...and they can be separated by a fixed spacing.
-    // .column_spacing(1)
-    // // If you wish to highlight a row in any specific way when it is selected...
-    // .highlight_style(Style::default().add_modifier(Modifier::BOLD))
-    // // ...and potentially show a symbol in front of the selection.
-    // .highlight_symbol(">>");
-
-    // f.render_widget(help_block, middle_left_layout[1]);
-
-    // let menu_items = app
-    //     .menu_list
-    //     .items
-    //     .iter()
-    //     .map(|item| ListItem::new(item.to_string()))
-    //     .collect::<Vec<ListItem>>();
-
-    // let menu_list = List::new(menu_items)
+    // let tracks_list = List::new(tracks)
     //     .block(
     //         Block::default()
     //             .borders(Borders::ALL)
@@ -135,30 +115,5 @@ fn ui<B: Backend>(frame: &mut Frame<B>, _app: &mut App) {
     //     )
     //     .highlight_symbol("█ ");
 
-    // f.render_stateful_widget(
-    //     menu_list,
-    //     middle_left_tracks_layout[0],
-    //     &mut app.menu_list.state,
-    // );
-
-    // let exercises_list =
-
-    // let action_block = ;
-
-    // f.render_widget(action_block, middle_chunks[1]);
-    // f.render_widget(tracks_list, middle_left_tracks_layout[1]);
-    // f.render_widget(exercises_list, middle_left_tracks_layout[2]);
-
-    // // let loader = throbber_widgets_tui::Throbber::default()
-    // //     .label("Loading user profile...")
-    // //     .style(tui::style::Style::default().fg(tui::style::Color::White))
-    // //     .throbber_style(
-    // //         tui::style::Style::default().fg(tui::style::Color::White), // .add_modifier(tui::style::Modifier::BOLD),
-    // //     )
-    // //     .throbber_set(throbber_widgets_tui::BRAILLE_SIX)
-    // //     .use_type(throbber_widgets_tui::WhichUse::Spin);
-
-    // // Bottom block with all default borders
-
-    // f.render_widget(bottom_block, main_inner_layout[2]);
+    // frame.render_stateful_widget(tracks_list, layout.tracks, &mut app.tracks.state);
 }

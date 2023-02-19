@@ -1,7 +1,5 @@
-
-
 use tui::{
-    layout::{Constraint},
+    layout::Constraint,
     style::{Color, Modifier, Style},
     widgets,
     widgets::{Block, Borders, Row, Table},

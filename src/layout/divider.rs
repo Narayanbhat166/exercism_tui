@@ -1,9 +1,5 @@
-
-
 use tui::layout::Rect;
-use tui::{
-    layout::{Constraint, Direction, Layout},
-};
+use tui::layout::{Constraint, Direction, Layout};
 
 pub struct Layouts {
     pub top_main: Rect,

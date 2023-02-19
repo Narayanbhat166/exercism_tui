@@ -1,5 +1,3 @@
-
-
 use tui::{
     style::{Color, Modifier, Style},
     widgets,

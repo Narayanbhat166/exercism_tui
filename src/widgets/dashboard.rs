@@ -1,6 +1,3 @@
-
-
-
 use tui::{
     widgets,
     widgets::{Block, BorderType, Borders},
