@@ -4,7 +4,7 @@ use tui::{
     widgets::{Block, BorderType, Borders, List, ListItem},
 };
 
-use crate::App;
+
 
 /// Tracks that are available and chosen
 /// Differenciate between available and chosen

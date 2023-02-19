@@ -6,8 +6,6 @@ use crossterm::{
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
-    style::{Color, Modifier, Style},
-    widgets::{Block, BorderType, Borders, List, ListItem},
     Frame, Terminal,
 };
 
