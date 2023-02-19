@@ -2,7 +2,7 @@ use super::tracks;
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::tracks;
 
     #[tokio::test]
     async fn test_tracks() {
