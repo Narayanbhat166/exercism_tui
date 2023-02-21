@@ -3,6 +3,7 @@ use crossterm::{
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
+use dotenv::dotenv;
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
@@ -10,31 +11,30 @@ use tui::{
 };
 
 use crate::{
+    custom_widgets::{draw_blocks, listblock::StatefulList},
     layout::divider::layout_divider,
-    widgets::{draw_blocks, listblock::StatefulList},
 };
 
 mod api;
+mod custom_widgets;
 mod layout;
-mod widgets;
 
 pub struct App {
-    tracks: widgets::listblock::StatefulList<String>,
-    exercises: widgets::listblock::StatefulList<String>,
+    tracks: custom_widgets::listblock::StatefulList<api::models::Track>,
+    exercises: custom_widgets::listblock::StatefulList<String>,
 }
 
-fn main() -> Result<(), Box<dyn Error>> {
-    // setup terminal
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    dotenv().ok();
     enable_raw_mode()?;
     let mut stdout = io::stdout();
     execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
 
-    // create app and run it
-    let res = run_app(&mut terminal);
+    let res = run_app(&mut terminal).await;
 
-    // restore terminal
     disable_raw_mode()?;
     execute!(
         terminal.backend_mut(),
@@ -53,15 +53,17 @@ fn main() -> Result<(), Box<dyn Error>> {
 impl App {
     fn new() -> App {
         App {
-            tracks: StatefulList::with_items(vec!["Rust".to_string(), "Cpp".to_string()]),
+            tracks: StatefulList::new(),
             exercises: StatefulList::with_items(vec![]),
         }
     }
 }
 
-fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
+async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     let tick_rate = Duration::from_millis(100);
     let mut app = App::new();
+    let tracks = api::tracks::get_tracks::get_tracks().await.unwrap();
+    app.tracks.add_items(tracks.tracks);
     let mut last_tick = std::time::Instant::now();
 
     loop {
@@ -92,26 +94,4 @@ fn ui<B: Backend>(frame: &mut Frame<B>, app: &mut App) {
 
     let layout = layout_divider(main_terminal_size);
     draw_blocks(frame, layout, app);
-
-    // let tracks = vec![
-    //     ListItem::new("Rust".to_string()),
-    //     ListItem::new("Cpp".to_string()),
-    // ];
-
-    // let tracks_list = List::new(tracks)
-    //     .block(
-    //         Block::default()
-    //             .borders(Borders::ALL)
-    //             .border_type(BorderType::Rounded)
-    //             .title("Menu"),
-    //     )
-    //     .style(Style::default().fg(Color::White))
-    //     .highlight_style(
-    //         Style::default()
-    //             .add_modifier(Modifier::ITALIC)
-    //             .fg(Color::Cyan),
-    //     )
-    //     .highlight_symbol("█ ");
-
-    // frame.render_stateful_widget(tracks_list, layout.tracks, &mut app.tracks.state);
 }

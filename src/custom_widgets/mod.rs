@@ -1,5 +1,5 @@
 pub mod bottom_bar;
-pub mod dashboard;
+pub mod description;
 pub mod exercises;
 pub mod help;
 pub mod listblock;
@@ -24,10 +24,10 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
                 .border_type(BorderType::Rounded),
         );
 
-    let tracks = tracks::tracks();
+    let tracks = tracks::tracks(app);
 
     let exercises = exercises::exercises();
-    let description = dashboard::dashboard();
+    let description = description::description(app);
     let bottom_bar = bottom_bar::bottom_bar();
     let help_table = help::help_table();
 

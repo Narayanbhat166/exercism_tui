@@ -1,0 +1,125 @@
+{
+  "tracks": [
+    {
+      "slug": "8th",
+      "title": "8th",
+      "course": false,
+      "num_concepts": 0,
+      "num_exercises": 22,
+      "web_url": "https://exercism.org/tracks/8th",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/tracks/8th.svg",
+      "tags": [
+        "Functional",
+        "Imperative",
+        "Procedural",
+        "Static",
+        "Strong",
+        "Dynamic",
+        "Compiled",
+        "Interpreted",
+        "Windows",
+        "Mac OSX",
+        "Linux",
+        "iOS",
+        "Android",
+        "Backends",
+        "Cross-platform development",
+        "Frontends",
+        "Games",
+        "GUIs",
+        "Mobile",
+        "Web development"
+      ],
+      "last_touched_at": null,
+      "is_new": false,
+      "links": {
+        "self": "https://exercism.org/tracks/8th",
+        "exercises": "https://exercism.org/tracks/8th/exercises",
+        "concepts": "https://exercism.org/tracks/8th/concepts"
+      }
+    },
+    {
+      "slug": "abap",
+      "title": "ABAP",
+      "course": false,
+      "num_concepts": 0,
+      "num_exercises": 40,
+      "web_url": "https://exercism.org/tracks/abap",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/tracks/abap.svg",
+      "tags": [
+        "Object-oriented",
+        "Procedural",
+        "Static",
+        "Strong",
+        "Compiled",
+        "Language-specific runtime",
+        "Backends",
+        "Financial systems"
+      ],
+      "last_touched_at": null,
+      "is_new": false,
+      "links": {
+        "self": "https://exercism.org/tracks/abap",
+        "exercises": "https://exercism.org/tracks/abap/exercises",
+        "concepts": "https://exercism.org/tracks/abap/concepts"
+      }
+    },
+    {
+      "slug": "awk",
+      "title": "AWK",
+      "course": false,
+      "num_concepts": 0,
+      "num_exercises": 58,
+      "web_url": "https://exercism.org/tracks/awk",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/tracks/awk.svg",
+      "tags": [
+        "Scripts",
+        "Procedural",
+        "Interpreted",
+        "Standalone executable",
+        "Weak",
+        "Linux",
+        "Mac OSX",
+        "Windows"
+      ],
+      "last_touched_at": null,
+      "is_new": false,
+      "links": {
+        "self": "https://exercism.org/tracks/awk",
+        "exercises": "https://exercism.org/tracks/awk/exercises",
+        "concepts": "https://exercism.org/tracks/awk/concepts"
+      }
+    },
+    {
+      "slug": "ballerina",
+      "title": "Ballerina",
+      "course": false,
+      "num_concepts": 0,
+      "num_exercises": 12,
+      "web_url": "https://exercism.org/tracks/ballerina",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/tracks/ballerina.svg",
+      "tags": [
+        "Procedural",
+        "Imperative",
+        "Object-oriented",
+        "Static",
+        "Strong",
+        "Compiled",
+        "Windows",
+        "Mac OSX",
+        "Linux",
+        "JVM (Java)",
+        "Backends",
+        "Web development",
+        "Cross-platform development"
+      ],
+      "last_touched_at": null,
+      "is_new": false,
+      "links": {
+        "self": "https://exercism.org/tracks/ballerina",
+        "exercises": "https://exercism.org/tracks/ballerina/exercises",
+        "concepts": "https://exercism.org/tracks/ballerina/concepts"
+      }
+    }
+  ]
+}

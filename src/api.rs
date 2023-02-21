@@ -1,2 +1,2 @@
-pub mod tests;
+pub mod models;
 pub mod tracks;
