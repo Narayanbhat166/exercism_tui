@@ -29,7 +29,43 @@ pub struct Track {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Links {
     #[serde(rename = "self")]
-    links_self: String,
-    exercises: String,
-    concepts: String,
+    links_self: Option<String>,
+    exercises: Option<String>,
+    concepts: Option<String>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Exercises {
+    pub exercises: Vec<Exercise>,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Exercise {
+    slug: String,
+    #[serde(rename = "type")]
+    exercise_type: Type,
+    pub title: String,
+    icon_url: String,
+    difficulty: Difficulty,
+    blurb: String,
+    is_external: bool,
+    is_unlocked: bool,
+    is_recommended: bool,
+    links: Links,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+#[serde(rename_all = "lowercase")]
+pub enum Difficulty {
+    Easy,
+    Hard,
+    Medium,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+#[serde(rename_all = "lowercase")]
+pub enum Type {
+    Concept,
+    Practice,
+    Tutorial,
 }

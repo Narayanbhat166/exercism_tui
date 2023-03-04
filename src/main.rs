@@ -1,5 +1,5 @@
 use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
+    event::{DisableMouseCapture, EnableMouseCapture, KeyCode, KeyEvent},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
@@ -17,11 +17,12 @@ use crate::{
 
 mod api;
 mod custom_widgets;
+mod fsm;
 mod layout;
 
 pub struct App {
     tracks: custom_widgets::listblock::StatefulList<api::models::Track>,
-    exercises: custom_widgets::listblock::StatefulList<String>,
+    exercises: custom_widgets::listblock::StatefulList<api::models::Exercise>,
 }
 
 #[tokio::main]
@@ -54,7 +55,7 @@ impl App {
     fn new() -> App {
         App {
             tracks: StatefulList::new(),
-            exercises: StatefulList::with_items(vec![]),
+            exercises: StatefulList::new(),
         }
     }
 }
@@ -66,6 +67,8 @@ async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     app.tracks.add_items(tracks.tracks);
     let mut last_tick = std::time::Instant::now();
 
+    let mut state_machine = fsm::StateMachine::new();
+
     loop {
         terminal.draw(|f| ui(f, &mut app))?;
 
@@ -74,12 +77,13 @@ async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
             .unwrap_or_else(|| std::time::Duration::from_secs(0));
 
         if crossterm::event::poll(timeout)? {
-            if let crossterm::event::Event::Key(key) = crossterm::event::read()? {
-                match key.code {
-                    KeyCode::Char('q') => return Ok(()),
-                    KeyCode::Up => app.tracks.previous(),
-                    KeyCode::Down => app.tracks.next(),
-                    _ => {}
+            if let crossterm::event::Event::Key(key_event) = crossterm::event::read()? {
+                if key_event.code == KeyCode::Char('q') {
+                    return Ok(());
+                } else {
+                    state_machine
+                        .transition(fsm::TransitionInput::Key(key_event.code), &mut app)
+                        .await
                 }
             }
         }

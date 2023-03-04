@@ -1,0 +1,1438 @@
+{
+  "exercises": [
+    {
+      "slug": "clock",
+      "type": "practice",
+      "title": "Clock",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/clock.svg",
+      "difficulty": "medium",
+      "blurb": "Implement a clock that handles times without dates.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/clock"
+      }
+    },
+    {
+      "slug": "health-statistics",
+      "type": "concept",
+      "title": "Health Statistics",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/health-statistics.svg",
+      "difficulty": "easy",
+      "blurb": "Learn structs to store statistics for a health-monitoring system.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": true,
+      "links": {
+        "self": "/tracks/rust/exercises/health-statistics"
+      }
+    },
+    {
+      "slug": "short-fibonacci",
+      "type": "concept",
+      "title": "A Short Fibonacci Sequence",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/short-fibonacci.svg",
+      "difficulty": "easy",
+      "blurb": "Learn the `vec!` macro to build a short Fibonacci Sequence.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/short-fibonacci"
+      }
+    },
+    {
+      "slug": "anagram",
+      "type": "practice",
+      "title": "Anagram",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/anagram.svg",
+      "difficulty": "medium",
+      "blurb": "Given a word and a list of possible anagrams, select the correct sublist.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/anagram"
+      }
+    },
+    {
+      "slug": "space-age",
+      "type": "practice",
+      "title": "Space Age",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/space-age.svg",
+      "difficulty": "medium",
+      "blurb": "Given an age in seconds, calculate how old someone is in terms of a given planet's solar years.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/space-age"
+      }
+    },
+    {
+      "slug": "sublist",
+      "type": "practice",
+      "title": "Sublist",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/sublist.svg",
+      "difficulty": "medium",
+      "blurb": "Write a function to determine if a list is a sublist of another list.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/sublist"
+      }
+    },
+    {
+      "slug": "minesweeper",
+      "type": "practice",
+      "title": "Minesweeper",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/minesweeper.svg",
+      "difficulty": "medium",
+      "blurb": "Add the numbers to a minesweeper board.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/minesweeper"
+      }
+    },
+    {
+      "slug": "luhn",
+      "type": "practice",
+      "title": "Luhn",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/luhn.svg",
+      "difficulty": "medium",
+      "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/luhn"
+      }
+    },
+    {
+      "slug": "parallel-letter-frequency",
+      "type": "practice",
+      "title": "Parallel Letter Frequency",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/parallel-letter-frequency.svg",
+      "difficulty": "hard",
+      "blurb": "Count the frequency of letters in texts using parallel computation.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/parallel-letter-frequency"
+      }
+    },
+    {
+      "slug": "macros",
+      "type": "practice",
+      "title": "Macros",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/macros.svg",
+      "difficulty": "hard",
+      "blurb": "Implement a macro using macros-by-example",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/macros"
+      }
+    },
+    {
+      "slug": "poker",
+      "type": "practice",
+      "title": "Poker",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/poker.svg",
+      "difficulty": "hard",
+      "blurb": "Pick the best hand(s) from a list of poker hands.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/poker"
+      }
+    },
+    {
+      "slug": "forth",
+      "type": "practice",
+      "title": "Forth",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/forth.svg",
+      "difficulty": "hard",
+      "blurb": "Implement an evaluator for a very simple subset of Forth.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/forth"
+      }
+    },
+    {
+      "slug": "armstrong-numbers",
+      "type": "practice",
+      "title": "Armstrong Numbers",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/armstrong-numbers.svg",
+      "difficulty": "easy",
+      "blurb": "Determine if a number is an Armstrong number.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/armstrong-numbers"
+      }
+    },
+    {
+      "slug": "beer-song",
+      "type": "practice",
+      "title": "Beer Song",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/beer-song.svg",
+      "difficulty": "easy",
+      "blurb": "Produce the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/beer-song"
+      }
+    },
+    {
+      "slug": "difference-of-squares",
+      "type": "practice",
+      "title": "Difference of Squares",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/difference-of-squares.svg",
+      "difficulty": "easy",
+      "blurb": "Find the difference between the square of the sum and the sum of the squares of the first N natural numbers.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/difference-of-squares"
+      }
+    },
+    {
+      "slug": "grains",
+      "type": "practice",
+      "title": "Grains",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/grains.svg",
+      "difficulty": "easy",
+      "blurb": "Calculate the number of grains of wheat on a chessboard given that the number on each square doubles.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/grains"
+      }
+    },
+    {
+      "slug": "leap",
+      "type": "practice",
+      "title": "Leap",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/leap.svg",
+      "difficulty": "easy",
+      "blurb": "Given a year, report if it is a leap year.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/leap"
+      }
+    },
+    {
+      "slug": "nth-prime",
+      "type": "practice",
+      "title": "Nth Prime",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/nth-prime.svg",
+      "difficulty": "easy",
+      "blurb": "Given a number n, determine what the nth prime is.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/nth-prime"
+      }
+    },
+    {
+      "slug": "prime-factors",
+      "type": "practice",
+      "title": "Prime Factors",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/prime-factors.svg",
+      "difficulty": "easy",
+      "blurb": "Compute the prime factors of a given natural number.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/prime-factors"
+      }
+    },
+    {
+      "slug": "proverb",
+      "type": "practice",
+      "title": "Proverb",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/proverb.svg",
+      "difficulty": "easy",
+      "blurb": "For want of a horseshoe nail, a kingdom was lost, or so the saying goes. Output the full text of this proverbial rhyme.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/proverb"
+      }
+    },
+    {
+      "slug": "raindrops",
+      "type": "practice",
+      "title": "Raindrops",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/raindrops.svg",
+      "difficulty": "easy",
+      "blurb": "Convert a number to a string, the content of which depends on the number's factors.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/raindrops"
+      }
+    },
+    {
+      "slug": "sum-of-multiples",
+      "type": "practice",
+      "title": "Sum of Multiples",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/sum-of-multiples.svg",
+      "difficulty": "easy",
+      "blurb": "Given a number, find the sum of all the multiples of particular numbers up to but not including that number.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/sum-of-multiples"
+      }
+    },
+    {
+      "slug": "bob",
+      "type": "practice",
+      "title": "Bob",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/bob.svg",
+      "difficulty": "easy",
+      "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/bob"
+      }
+    },
+    {
+      "slug": "high-scores",
+      "type": "practice",
+      "title": "High Scores",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/high-scores.svg",
+      "difficulty": "easy",
+      "blurb": "Manage a player's High Score list.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/high-scores"
+      }
+    },
+    {
+      "slug": "matching-brackets",
+      "type": "practice",
+      "title": "Matching Brackets",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/matching-brackets.svg",
+      "difficulty": "easy",
+      "blurb": "Make sure the brackets and braces all match.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/matching-brackets"
+      }
+    },
+    {
+      "slug": "acronym",
+      "type": "practice",
+      "title": "Acronym",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/acronym.svg",
+      "difficulty": "medium",
+      "blurb": "Convert a long phrase to its acronym.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/acronym"
+      }
+    },
+    {
+      "slug": "all-your-base",
+      "type": "practice",
+      "title": "All Your Base",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/all-your-base.svg",
+      "difficulty": "medium",
+      "blurb": "Convert a number, represented as a sequence of digits in one base, to any other base.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/all-your-base"
+      }
+    },
+    {
+      "slug": "allergies",
+      "type": "practice",
+      "title": "Allergies",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg",
+      "difficulty": "medium",
+      "blurb": "Given a person's allergy score, determine whether or not they're allergic to a given item, and their full list of allergies.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/allergies"
+      }
+    },
+    {
+      "slug": "alphametics",
+      "type": "practice",
+      "title": "Alphametics",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/alphametics.svg",
+      "difficulty": "medium",
+      "blurb": "Write a function to solve alphametics puzzles.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/alphametics"
+      }
+    },
+    {
+      "slug": "binary-search",
+      "type": "practice",
+      "title": "Binary Search",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/binary-search.svg",
+      "difficulty": "medium",
+      "blurb": "Implement a binary search algorithm.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/binary-search"
+      }
+    },
+    {
+      "slug": "bowling",
+      "type": "practice",
+      "title": "Bowling",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/bowling.svg",
+      "difficulty": "medium",
+      "blurb": "Score a bowling game.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/bowling"
+      }
+    },
+    {
+      "slug": "dot-dsl",
+      "type": "practice",
+      "title": "DOT DSL",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/dot-dsl.svg",
+      "difficulty": "medium",
+      "blurb": "Write a Domain Specific Language similar to the Graphviz dot language.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/dot-dsl"
+      }
+    },
+    {
+      "slug": "etl",
+      "type": "practice",
+      "title": "ETL",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/etl.svg",
+      "difficulty": "medium",
+      "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/etl"
+      }
+    },
+    {
+      "slug": "grade-school",
+      "type": "practice",
+      "title": "Grade School",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/grade-school.svg",
+      "difficulty": "medium",
+      "blurb": "Given students' names along with the grade that they are in, create a roster for the school.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/grade-school"
+      }
+    },
+    {
+      "slug": "hamming",
+      "type": "practice",
+      "title": "Hamming",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/hamming.svg",
+      "difficulty": "medium",
+      "blurb": "Calculate the Hamming difference between two DNA strands.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/hamming"
+      }
+    },
+    {
+      "slug": "isbn-verifier",
+      "type": "practice",
+      "title": "ISBN Verifier",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/isbn-verifier.svg",
+      "difficulty": "medium",
+      "blurb": "Check if a given string is a valid ISBN-10 number.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/isbn-verifier"
+      }
+    },
+    {
+      "slug": "isogram",
+      "type": "practice",
+      "title": "Isogram",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/isogram.svg",
+      "difficulty": "medium",
+      "blurb": "Determine if a word or phrase is an isogram.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/isogram"
+      }
+    },
+    {
+      "slug": "nucleotide-count",
+      "type": "practice",
+      "title": "Nucleotide Count",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/nucleotide-count.svg",
+      "difficulty": "medium",
+      "blurb": "Given a DNA string, compute how many times each nucleotide occurs in the string.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/nucleotide-count"
+      }
+    },
+    {
+      "slug": "paasio",
+      "type": "practice",
+      "title": "PaaS I/O",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/paasio.svg",
+      "difficulty": "medium",
+      "blurb": "Report network IO statistics.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/paasio"
+      }
+    },
+    {
+      "slug": "palindrome-products",
+      "type": "practice",
+      "title": "Palindrome Products",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/palindrome-products.svg",
+      "difficulty": "medium",
+      "blurb": "Detect palindrome products in a given range.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/palindrome-products"
+      }
+    },
+    {
+      "slug": "pangram",
+      "type": "practice",
+      "title": "Pangram",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/pangram.svg",
+      "difficulty": "medium",
+      "blurb": "Determine if a sentence is a pangram.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/pangram"
+      }
+    },
+    {
+      "slug": "pascals-triangle",
+      "type": "practice",
+      "title": "Pascal's Triangle",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/pascals-triangle.svg",
+      "difficulty": "medium",
+      "blurb": "Compute Pascal's triangle up to a given number of rows.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/pascals-triangle"
+      }
+    },
+    {
+      "slug": "perfect-numbers",
+      "type": "practice",
+      "title": "Perfect Numbers",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/perfect-numbers.svg",
+      "difficulty": "medium",
+      "blurb": "Determine if a number is perfect, abundant, or deficient based on Nicomachus' (60 - 120 CE) classification scheme for positive integers.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/perfect-numbers"
+      }
+    },
+    {
+      "slug": "pig-latin",
+      "type": "practice",
+      "title": "Pig Latin",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/pig-latin.svg",
+      "difficulty": "medium",
+      "blurb": "Implement a program that translates from English to Pig Latin.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/pig-latin"
+      }
+    },
+    {
+      "slug": "queen-attack",
+      "type": "practice",
+      "title": "Queen Attack",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/queen-attack.svg",
+      "difficulty": "medium",
+      "blurb": "Given the position of two queens on a chess board, indicate whether or not they are positioned so that they can attack each other.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/queen-attack"
+      }
+    },
+    {
+      "slug": "rna-transcription",
+      "type": "practice",
+      "title": "RNA Transcription",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/rna-transcription.svg",
+      "difficulty": "medium",
+      "blurb": "Given a DNA strand, return its RNA Complement Transcription.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/rna-transcription"
+      }
+    },
+    {
+      "slug": "run-length-encoding",
+      "type": "practice",
+      "title": "Run-Length Encoding",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/run-length-encoding.svg",
+      "difficulty": "medium",
+      "blurb": "Implement run-length encoding and decoding.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/run-length-encoding"
+      }
+    },
+    {
+      "slug": "saddle-points",
+      "type": "practice",
+      "title": "Saddle Points",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/saddle-points.svg",
+      "difficulty": "medium",
+      "blurb": "Detect saddle points in a matrix.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/saddle-points"
+      }
+    },
+    {
+      "slug": "say",
+      "type": "practice",
+      "title": "Say",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/say.svg",
+      "difficulty": "medium",
+      "blurb": "Given a number from 0 to 999,999,999,999, spell out that number in English.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/say"
+      }
+    },
+    {
+      "slug": "scrabble-score",
+      "type": "practice",
+      "title": "Scrabble Score",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/scrabble-score.svg",
+      "difficulty": "medium",
+      "blurb": "Given a word, compute the Scrabble score for that word.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/scrabble-score"
+      }
+    },
+    {
+      "slug": "sieve",
+      "type": "practice",
+      "title": "Sieve",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/sieve.svg",
+      "difficulty": "medium",
+      "blurb": "Use the Sieve of Eratosthenes to find all the primes from 2 up to a given number.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/sieve"
+      }
+    },
+    {
+      "slug": "simple-linked-list",
+      "type": "practice",
+      "title": "Simple Linked List",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/simple-linked-list.svg",
+      "difficulty": "medium",
+      "blurb": "Write a simple linked list implementation that uses Elements and a List.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/simple-linked-list"
+      }
+    },
+    {
+      "slug": "spiral-matrix",
+      "type": "practice",
+      "title": "Spiral Matrix",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/spiral-matrix.svg",
+      "difficulty": "medium",
+      "blurb": " Given the size, return a square matrix of numbers in spiral order.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/spiral-matrix"
+      }
+    },
+    {
+      "slug": "tournament",
+      "type": "practice",
+      "title": "Tournament",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/tournament.svg",
+      "difficulty": "medium",
+      "blurb": "Tally the results of a small football competition.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/tournament"
+      }
+    },
+    {
+      "slug": "triangle",
+      "type": "practice",
+      "title": "Triangle",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/triangle.svg",
+      "difficulty": "medium",
+      "blurb": "Determine if a triangle is equilateral, isosceles, or scalene.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/triangle"
+      }
+    },
+    {
+      "slug": "two-bucket",
+      "type": "practice",
+      "title": "Two Bucket",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/two-bucket.svg",
+      "difficulty": "medium",
+      "blurb": "Given two buckets of different size, demonstrate how to measure an exact number of liters.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/two-bucket"
+      }
+    },
+    {
+      "slug": "variable-length-quantity",
+      "type": "practice",
+      "title": "Variable Length Quantity",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/variable-length-quantity.svg",
+      "difficulty": "medium",
+      "blurb": "Implement variable length quantity encoding and decoding.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/variable-length-quantity"
+      }
+    },
+    {
+      "slug": "robot-name",
+      "type": "practice",
+      "title": "Robot Name",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/robot-name.svg",
+      "difficulty": "medium",
+      "blurb": "Manage robot factory settings.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/robot-name"
+      }
+    },
+    {
+      "slug": "protein-translation",
+      "type": "practice",
+      "title": "Protein Translation",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/protein-translation.svg",
+      "difficulty": "medium",
+      "blurb": "Translate RNA sequences into proteins.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/protein-translation"
+      }
+    },
+    {
+      "slug": "ocr-numbers",
+      "type": "practice",
+      "title": "OCR Numbers",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/ocr-numbers.svg",
+      "difficulty": "hard",
+      "blurb": "Given a 3 x 4 grid of pipes, underscores, and spaces, determine which number is represented, or whether it is garbled.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/ocr-numbers"
+      }
+    },
+    {
+      "slug": "react",
+      "type": "practice",
+      "title": "React",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/react.svg",
+      "difficulty": "hard",
+      "blurb": "Implement a basic reactive system.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/react"
+      }
+    },
+    {
+      "slug": "wordy",
+      "type": "practice",
+      "title": "Wordy",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/wordy.svg",
+      "difficulty": "medium",
+      "blurb": "Parse and evaluate simple math word problems returning the answer as an integer.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/wordy"
+      }
+    },
+    {
+      "slug": "custom-set",
+      "type": "practice",
+      "title": "Custom Set",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/custom-set.svg",
+      "difficulty": "medium",
+      "blurb": "Create a custom set type.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/custom-set"
+      }
+    },
+    {
+      "slug": "circular-buffer",
+      "type": "practice",
+      "title": "Circular Buffer",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/circular-buffer.svg",
+      "difficulty": "hard",
+      "blurb": "A data structure that uses a single, fixed-size buffer as if it were connected end-to-end.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/circular-buffer"
+      }
+    },
+    {
+      "slug": "rectangles",
+      "type": "practice",
+      "title": "Rectangles",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/rectangles.svg",
+      "difficulty": "hard",
+      "blurb": "Count the rectangles in an ASCII diagram.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/rectangles"
+      }
+    },
+    {
+      "slug": "collatz-conjecture",
+      "type": "practice",
+      "title": "Collatz Conjecture",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/collatz-conjecture.svg",
+      "difficulty": "easy",
+      "blurb": "Calculate the number of steps to reach 1 using the Collatz conjecture.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/collatz-conjecture"
+      }
+    },
+    {
+      "slug": "diffie-hellman",
+      "type": "practice",
+      "title": "Diffie-Hellman",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/diffie-hellman.svg",
+      "difficulty": "easy",
+      "blurb": "Diffie-Hellman key exchange.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/diffie-hellman"
+      }
+    },
+    {
+      "slug": "series",
+      "type": "practice",
+      "title": "Series",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/series.svg",
+      "difficulty": "easy",
+      "blurb": "Given a string of digits, output all the contiguous substrings of length `n` in that string.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/series"
+      }
+    },
+    {
+      "slug": "accumulate",
+      "type": "practice",
+      "title": "Accumulate",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/accumulate.svg",
+      "difficulty": "medium",
+      "blurb": "Implement the `accumulate` operation, which, given a collection and an operation to perform on each element of the collection, returns a new collection containing the result of applying that operation to each element of the input collection.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/accumulate"
+      }
+    },
+    {
+      "slug": "affine-cipher",
+      "type": "practice",
+      "title": "Affine Cipher",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/affine-cipher.svg",
+      "difficulty": "medium",
+      "blurb": "Create an implementation of the Affine cipher, an ancient encryption algorithm from the Middle East.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/affine-cipher"
+      }
+    },
+    {
+      "slug": "atbash-cipher",
+      "type": "practice",
+      "title": "Atbash Cipher",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/atbash-cipher.svg",
+      "difficulty": "medium",
+      "blurb": "Create an implementation of the atbash cipher, an ancient encryption system created in the Middle East.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/atbash-cipher"
+      }
+    },
+    {
+      "slug": "crypto-square",
+      "type": "practice",
+      "title": "Crypto Square",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/crypto-square.svg",
+      "difficulty": "medium",
+      "blurb": "Implement the classic method for composing secret messages called a square code.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/crypto-square"
+      }
+    },
+    {
+      "slug": "diamond",
+      "type": "practice",
+      "title": "Diamond",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/diamond.svg",
+      "difficulty": "medium",
+      "blurb": "Given a letter, print a diamond starting with 'A' with the supplied letter at the widest point.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/diamond"
+      }
+    },
+    {
+      "slug": "largest-series-product",
+      "type": "practice",
+      "title": "Largest Series Product",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/largest-series-product.svg",
+      "difficulty": "medium",
+      "blurb": "Given a string of digits, calculate the largest product for a contiguous substring of digits of length n.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/largest-series-product"
+      }
+    },
+    {
+      "slug": "luhn-from",
+      "type": "practice",
+      "title": "Luhn From",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/luhn-from.svg",
+      "difficulty": "medium",
+      "blurb": "Luhn: Using the From Trait",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/luhn-from"
+      }
+    },
+    {
+      "slug": "luhn-trait",
+      "type": "practice",
+      "title": "Luhn Trait",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/luhn-trait.svg",
+      "difficulty": "medium",
+      "blurb": "Luhn: Using a Custom Trait",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/luhn-trait"
+      }
+    },
+    {
+      "slug": "phone-number",
+      "type": "practice",
+      "title": "Phone Number",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/phone-number.svg",
+      "difficulty": "medium",
+      "blurb": "Clean up user-entered phone numbers so that they can be sent SMS messages.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/phone-number"
+      }
+    },
+    {
+      "slug": "rail-fence-cipher",
+      "type": "practice",
+      "title": "Rail Fence Cipher",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/rail-fence-cipher.svg",
+      "difficulty": "medium",
+      "blurb": "Implement encoding and decoding for the rail fence cipher.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/rail-fence-cipher"
+      }
+    },
+    {
+      "slug": "roman-numerals",
+      "type": "practice",
+      "title": "Roman Numerals",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/roman-numerals.svg",
+      "difficulty": "medium",
+      "blurb": "Write a function to convert from normal numbers to Roman Numerals.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/roman-numerals"
+      }
+    },
+    {
+      "slug": "rotational-cipher",
+      "type": "practice",
+      "title": "Rotational Cipher",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/rotational-cipher.svg",
+      "difficulty": "medium",
+      "blurb": "Create an implementation of the rotational cipher, also sometimes called the Caesar cipher.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/rotational-cipher"
+      }
+    },
+    {
+      "slug": "simple-cipher",
+      "type": "practice",
+      "title": "Simple Cipher",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/simple-cipher.svg",
+      "difficulty": "medium",
+      "blurb": "Implement a simple shift cipher like Caesar and a more secure substitution cipher.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/simple-cipher"
+      }
+    },
+    {
+      "slug": "word-count",
+      "type": "practice",
+      "title": "Word Count",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/word-count.svg",
+      "difficulty": "medium",
+      "blurb": "Given a phrase, count the occurrences of each word in that phrase.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/word-count"
+      }
+    },
+    {
+      "slug": "fizzy",
+      "type": "practice",
+      "title": "Fizzy",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/fizzy.svg",
+      "difficulty": "medium",
+      "blurb": "Implement FizzBuzz using advanced generics",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/fizzy"
+      }
+    },
+    {
+      "slug": "pythagorean-triplet",
+      "type": "practice",
+      "title": "Pythagorean Triplet",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/pythagorean-triplet.svg",
+      "difficulty": "medium",
+      "blurb": "There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product a * b * c.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/pythagorean-triplet"
+      }
+    },
+    {
+      "slug": "xorcism",
+      "type": "practice",
+      "title": "Xorcism",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/xorcism.svg",
+      "difficulty": "hard",
+      "blurb": "Implement zero-copy streaming adaptors",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/xorcism"
+      }
+    },
+    {
+      "slug": "book-store",
+      "type": "practice",
+      "title": "Book Store",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/book-store.svg",
+      "difficulty": "medium",
+      "blurb": "To try and encourage more sales of different books from a popular 5 book series, a bookshop has decided to offer discounts of multiple-book purchases.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/book-store"
+      }
+    },
+    {
+      "slug": "decimal",
+      "type": "practice",
+      "title": "Decimal",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/decimal.svg",
+      "difficulty": "medium",
+      "blurb": "Implement a Decimal type",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/decimal"
+      }
+    },
+    {
+      "slug": "grep",
+      "type": "practice",
+      "title": "Grep",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/grep.svg",
+      "difficulty": "medium",
+      "blurb": "Search a file for lines matching a regular expression pattern. Return the line number and contents of each matching line.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/grep"
+      }
+    },
+    {
+      "slug": "scale-generator",
+      "type": "practice",
+      "title": "Scale Generator",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/scale-generator.svg",
+      "difficulty": "medium",
+      "blurb": "Generate musical scales, given a starting note and a set of intervals.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/scale-generator"
+      }
+    },
+    {
+      "slug": "dominoes",
+      "type": "practice",
+      "title": "Dominoes",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/dominoes.svg",
+      "difficulty": "hard",
+      "blurb": "Make a chain of dominoes.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/dominoes"
+      }
+    },
+    {
+      "slug": "doubly-linked-list",
+      "type": "practice",
+      "title": "Doubly Linked List",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/doubly-linked-list.svg",
+      "difficulty": "hard",
+      "blurb": "linked-list",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/doubly-linked-list"
+      }
+    },
+    {
+      "slug": "lucians-luscious-lasagna",
+      "type": "concept",
+      "title": "Lucian's Luscious Lasagna",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/lasagna.svg",
+      "difficulty": "easy",
+      "blurb": "Learn about the basics of Rust by following a lasagna recipe.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/lucians-luscious-lasagna"
+      }
+    },
+    {
+      "slug": "assembly-line",
+      "type": "concept",
+      "title": "Assembly Line",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/assembly-line.svg",
+      "difficulty": "easy",
+      "blurb": "Learn about numbers while working on an assembly line for cars.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/assembly-line"
+      }
+    },
+    {
+      "slug": "semi-structured-logs",
+      "type": "concept",
+      "title": "Semi Structured Logs",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/semi-structured-logs.svg",
+      "difficulty": "easy",
+      "blurb": "Learn enums while building a logging utility.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/semi-structured-logs"
+      }
+    },
+    {
+      "slug": "resistor-color",
+      "type": "concept",
+      "title": "Resistor Color",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/resistor-color.svg",
+      "difficulty": "easy",
+      "blurb": "Convert a resistor band's color to its numeric representation and back, using external crates",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/resistor-color"
+      }
+    },
+    {
+      "slug": "hello-world",
+      "type": "tutorial",
+      "title": "Hello World",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/hello-world.svg",
+      "difficulty": "easy",
+      "blurb": "The classical introductory exercise. Just say \"Hello, World!\".",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/hello-world"
+      }
+    },
+    {
+      "slug": "reverse-string",
+      "type": "practice",
+      "title": "Reverse String",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/reverse-string.svg",
+      "difficulty": "easy",
+      "blurb": "Reverse a string.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/reverse-string"
+      }
+    },
+    {
+      "slug": "gigasecond",
+      "type": "practice",
+      "title": "Gigasecond",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/gigasecond.svg",
+      "difficulty": "easy",
+      "blurb": "Given a moment, determine the moment that would be after a gigasecond has passed.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/gigasecond"
+      }
+    },
+    {
+      "slug": "robot-simulator",
+      "type": "practice",
+      "title": "Robot Simulator",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/robot-simulator.svg",
+      "difficulty": "medium",
+      "blurb": "Write a robot simulator.",
+      "is_external": false,
+      "is_unlocked": true,
+      "is_recommended": false,
+      "links": {
+        "self": "/tracks/rust/exercises/robot-simulator"
+      }
+    },
+    {
+      "slug": "magazine-cutout",
+      "type": "concept",
+      "title": "Magazine Cutout",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/magazine-cutout.svg",
+      "difficulty": "easy",
+      "blurb": "Use `HashMap` and the entry API methods to write an anonymous letter.",
+      "is_external": false,
+      "is_unlocked": false,
+      "is_recommended": false,
+      "links": {}
+    },
+    {
+      "slug": "role-playing-game",
+      "type": "concept",
+      "title": "Role-Playing Game",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/role-playing-game.svg",
+      "difficulty": "easy",
+      "blurb": "Learn about the `Option` enum by creating a minimal role-playing game",
+      "is_external": false,
+      "is_unlocked": false,
+      "is_recommended": false,
+      "links": {}
+    },
+    {
+      "slug": "low-power-embedded-game",
+      "type": "concept",
+      "title": "Low-Power Embedded Game",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/low-power-embedded-game.svg",
+      "difficulty": "easy",
+      "blurb": "Learn tuples while writing convenience functions for a low-power embedded game",
+      "is_external": false,
+      "is_unlocked": false,
+      "is_recommended": false,
+      "links": {}
+    },
+    {
+      "slug": "rpn-calculator",
+      "type": "concept",
+      "title": "RPN Calculator",
+      "icon_url": "https://dg8krxphbh767.cloudfront.net/exercises/rpn-calculator.svg",
+      "difficulty": "easy",
+      "blurb": "Use some of `Vec`'s methods to evaluate Reverse Polish notation",
+      "is_external": false,
+      "is_unlocked": false,
+      "is_recommended": false,
+      "links": {}
+    }
+  ]
+}

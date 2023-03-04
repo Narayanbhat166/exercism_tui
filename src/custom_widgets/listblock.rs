@@ -1,4 +1,4 @@
-use tui::widgets::{ListState};
+use tui::widgets::ListState;
 
 pub struct StatefulList<T> {
     pub state: ListState,
@@ -63,11 +63,13 @@ impl<T: Clone> StatefulList<T> {
         self.items.get(self.selected).map(|item| item.clone())
     }
 
+    pub fn unselect(&mut self) {
+        self.state.select(None)
+    }
+
     pub fn add_items(&mut self, items: Vec<T>) {
         self.items.extend(items)
     }
 
-    fn unselect(&mut self) {
-        self.state.select(None);
-    }
+    pub fn nop(&mut self) {}
 }

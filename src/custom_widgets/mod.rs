@@ -26,14 +26,14 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
 
     let tracks = tracks::tracks(app);
 
-    let exercises = exercises::exercises();
+    let exercises = exercises::exercises(app);
     let description = description::description(app);
     let bottom_bar = bottom_bar::bottom_bar();
     let help_table = help::help_table();
 
     frame.render_widget(top_main, layout.top_main);
     frame.render_stateful_widget(tracks, layout.tracks, &mut app.tracks.state);
-    frame.render_widget(exercises, layout.exercises);
+    frame.render_stateful_widget(exercises, layout.exercises, &mut app.exercises.state);
     frame.render_widget(description, layout.description);
     frame.render_widget(help_table, layout.help);
     frame.render_widget(bottom_bar, layout.logs);

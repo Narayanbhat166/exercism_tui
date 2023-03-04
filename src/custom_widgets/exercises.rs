@@ -1,14 +1,25 @@
 use tui::{
     style::{Color, Modifier, Style},
-    widgets,
+    widgets::{self, ListState},
     widgets::{Block, BorderType, Borders, List, ListItem},
 };
+
+use crate::App;
 
 /// Exercises that are available and chosen
 /// Differenciate between done and not done
 /// TODO: provide a filter for the above functionality
-pub fn exercises() -> impl widgets::Widget {
-    List::new([ListItem::new("Select a track")])
+pub fn exercises(app: &App) -> impl widgets::StatefulWidget<State = ListState> {
+    let list_items = if app.exercises.items.len() == 0 {
+        vec![ListItem::new("Select a track")]
+    } else {
+        app.exercises
+            .items
+            .iter()
+            .map(|item| ListItem::new(item.title.to_owned()))
+            .collect::<Vec<_>>()
+    };
+    List::new(list_items)
         .block(
             Block::default()
                 .borders(Borders::ALL)
@@ -16,6 +27,10 @@ pub fn exercises() -> impl widgets::Widget {
                 .title("Exercises"),
         )
         .style(Style::default().fg(Color::White))
-        .highlight_style(Style::default().add_modifier(Modifier::ITALIC))
-        .highlight_symbol("█")
+        .highlight_style(
+            Style::default()
+                .add_modifier(Modifier::ITALIC)
+                .fg(Color::Cyan),
+        )
+        .highlight_symbol("█ ")
 }
