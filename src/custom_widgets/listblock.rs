@@ -14,7 +14,7 @@ impl<T: Clone> StatefulList<T> {
             selected: 0,
         };
 
-        list.state.select(Some(list.selected));
+        list.state.select(None);
         list
     }
 

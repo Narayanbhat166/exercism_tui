@@ -10,11 +10,12 @@ use tui::{
 pub fn help_table() -> impl widgets::Widget {
     Table::new(vec![
         Row::new(vec!["q", "quit"]),
-        Row::new(vec!["↓", "move down"]),
+        Row::new(vec!["↓ / j", "move down"]),
+        Row::new(vec!["↑ / i", "move down"]),
     ])
     .style(Style::default().fg(Color::White))
     .block(Block::default().title("Help").borders(Borders::ALL))
-    .widths(&[Constraint::Length(2), Constraint::Length(5)])
+    .widths(&[Constraint::Length(10), Constraint::Length(10)])
     .column_spacing(1)
-    .highlight_style(Style::default().add_modifier(Modifier::BOLD))
+    .header(Row::new(vec!["Key", "Action"]))
 }

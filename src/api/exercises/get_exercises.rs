@@ -3,7 +3,7 @@ use reqwest;
 use crate::api::models;
 
 #[cfg(feature = "mock")]
-pub async fn get_exercises(track_id: String) -> Result<models::Exercises, reqwest::Error> {
+pub async fn get_exercises(_track_id: String) -> Result<models::Exercises, reqwest::Error> {
     let file_contents = std::include_bytes!("mock_response.json");
     // Simulate the api call delay
     std::thread::sleep(std::time::Duration::from_secs(1));

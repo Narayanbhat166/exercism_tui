@@ -14,7 +14,8 @@ crossterm            = "0.25.0"
 reqwest              = "0.11.14"
 serde                = { version = "1.0.152", features = [ "derive" ] }
 dotenv               = "0.15.0"
+strum = {version = "0.24.1" , features = ["derive"]}
 
 [features]
-default = [ "mock" ]
-mock    = [  ]
+default = ["mock"]
+mock    = []

@@ -1,5 +1,6 @@
 use serde::Deserialize;
 use serde::Serialize;
+use strum;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Tracks {
@@ -46,7 +47,7 @@ pub struct Exercise {
     exercise_type: Type,
     pub title: String,
     icon_url: String,
-    difficulty: Difficulty,
+    pub difficulty: Difficulty,
     blurb: String,
     is_external: bool,
     is_unlocked: bool,
@@ -54,7 +55,7 @@ pub struct Exercise {
     links: Links,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, strum::Display)]
 #[serde(rename_all = "lowercase")]
 pub enum Difficulty {
     Easy,
