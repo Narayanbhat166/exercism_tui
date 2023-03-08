@@ -48,7 +48,7 @@ pub struct Exercise {
     pub title: String,
     icon_url: String,
     pub difficulty: Difficulty,
-    blurb: String,
+    pub blurb: String,
     is_external: bool,
     is_unlocked: bool,
     is_recommended: bool,
