@@ -6,7 +6,7 @@ use crate::{
         models::{Exercise, Track},
     },
     custom_widgets::listblock::StatefulList,
-    fsm::{self, TransitionInput},
+    fsm::{self, TransitionInput, Window},
     App,
 };
 use crossterm::event::KeyCode;
@@ -14,6 +14,7 @@ use crossterm::event::KeyCode;
 pub enum ExercisesAction {
     MoveDown,
     MoveUp,
+    SelectExercise,
     Nop,
 }
 
@@ -28,6 +29,21 @@ impl ExercisesAction {
                 app.exercises.previous();
                 None
             }
+            ExercisesAction::SelectExercise => {
+                let current_track = app.tracks.get_current_item().unwrap();
+                let current_exercise = app.exercises.get_current_item().unwrap();
+
+                let description = api::description::get_description::get_description(
+                    current_track.slug,
+                    current_exercise.slug,
+                )
+                .await
+                .unwrap();
+
+                app.description = description;
+
+                Some(Window::Description)
+            }
             ExercisesAction::Nop => None,
         }
     }
@@ -36,6 +52,7 @@ impl ExercisesAction {
         match input {
             TransitionInput::Key(KeyCode::Down | KeyCode::Char('j')) => Self::MoveDown,
             TransitionInput::Key(KeyCode::Up | KeyCode::Char('k')) => Self::MoveUp,
+            TransitionInput::Key(KeyCode::Char('l') | KeyCode::Enter) => Self::SelectExercise,
             _ => Self::Nop,
         }
     }

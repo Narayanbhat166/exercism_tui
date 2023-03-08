@@ -10,7 +10,7 @@ mod tests {
     #[tokio::test]
     async fn test_description() {
         let exercise_description =
-            get_description::get_description("rust".to_string(), "anagram".to_string())
+            get_description::get_description("rust".to_string(), "clock".to_string())
                 .await
                 .unwrap();
         assert!(exercise_description.len() > 0);

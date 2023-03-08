@@ -1,3 +1,4 @@
+use base64::{engine::general_purpose, Engine};
 use reqwest;
 
 use crate::api::models;
@@ -16,17 +17,36 @@ pub async fn get_description(
     track_id: String,
     exercise_id: String,
 ) -> Result<String, reqwest::Error> {
-    let url = format!("https://raw.githubusercontent.com/exercism/{track_id}/main/exercises/practice/{exercise_id}/.docs/instructions.md");
-    // let auth_key = std::env::var("AUTH_TOKEN").expect("AUTH_TOKEN must be provided");
+    let url = format!("https://api.github.com/repos/exercism/{track_id}/contents/exercises/practice/{exercise_id}/.docs/instructions.md");
     let client = reqwest::Client::new();
     let response = client
         .get(url)
-        // .header(reqwest::header::AUTHORIZATION, auth_key)
+        .header(reqwest::header::USER_AGENT, "curl/7.86.0")
         .send()
-        .await
-        .unwrap();
+        .await;
 
-    let text = response.text().await.unwrap();
+    Ok(match response {
+        Ok(response) => {
+            let response_text = response.text().await.unwrap();
+            let github_response = serde_json::from_str::<models::GitHubResponse>(&response_text)
+                .expect("Failed to deserialize github response");
 
-    Ok(text)
+            match github_response.content {
+                Some(base64_encoded_text) => {
+                    let base64_encoded_text = base64_encoded_text.replace('\n', "");
+
+                    let decoded_text = general_purpose::STANDARD
+                        .decode(base64_encoded_text)
+                        .expect("Failed when decoding response");
+
+                    String::from_utf8_lossy(&decoded_text).into()
+                }
+                None => String::from("Not available"),
+            }
+        }
+        Err(_) => {
+            // Call the api again?
+            String::from("Not available")
+        }
+    })
 }

@@ -25,6 +25,7 @@ pub struct App {
     current_window: fsm::Window,
     tracks: custom_widgets::listblock::StatefulList<api::models::Track>,
     exercises: custom_widgets::listblock::StatefulList<api::models::Exercise>,
+    description: String,
 }
 
 #[tokio::main]
@@ -59,6 +60,7 @@ impl App {
             current_window: Window::Tracks,
             tracks: StatefulList::new(),
             exercises: StatefulList::new(),
+            description: String::new(),
         }
     }
 
@@ -74,9 +76,9 @@ impl App {
             Window::Exercises => {
                 let action = exercises_action::ExercisesAction::get_action(input);
                 let state_change = action.execute_action(self).await;
-                if let Some(new_state) = state_change {
-                    self.current_window = new_state
-                }
+                // if let Some(new_state) = state_change {
+                //     self.current_window = new_state
+                // }
             }
             Window::BottomBar => todo!(),
             Window::Description => todo!(),

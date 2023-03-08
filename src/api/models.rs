@@ -9,7 +9,7 @@ pub struct Tracks {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Track {
-    slug: String,
+    pub slug: String,
     pub title: String,
     course: bool,
     pub num_concepts: i64,
@@ -42,7 +42,7 @@ pub struct Exercises {
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Exercise {
-    slug: String,
+    pub slug: String,
     #[serde(rename = "type")]
     exercise_type: Type,
     pub title: String,
@@ -69,4 +69,9 @@ pub enum Type {
     Concept,
     Practice,
     Tutorial,
+}
+
+#[derive(Deserialize)]
+pub struct GitHubResponse {
+    pub content: Option<String>,
 }
