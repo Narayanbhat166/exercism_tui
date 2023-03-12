@@ -31,7 +31,6 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
 
     let track_information = track_information::track_information(app);
     let exercise_information = exercise_information::exercise_information(app);
-    let description = description::description(app);
     let bottom_bar = bottom_bar::bottom_bar();
     let help_table = help::help_table();
 
@@ -41,7 +40,7 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
     frame.render_widget(top_main, layout.top_main);
     frame.render_widget(track_information, layout.tracks_information);
     frame.render_widget(exercise_information, layout.exercise_information);
-    frame.render_widget(description, layout.description);
+    frame.render_widget(description::description(app), layout.description);
     frame.render_widget(help_table, layout.help);
     frame.render_widget(bottom_bar, layout.logs);
 }
