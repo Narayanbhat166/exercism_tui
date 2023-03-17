@@ -1,11 +1,9 @@
-use std::thread::current;
+
 
 use tui::{
-    layout::Constraint,
-    style::{Color, Modifier, Style},
     text::Text,
     widgets::{self, Paragraph},
-    widgets::{Block, Borders, Row, Table, Wrap},
+    widgets::{Block, Borders, Wrap},
 };
 
 use crate::App;

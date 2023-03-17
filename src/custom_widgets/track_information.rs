@@ -1,8 +1,8 @@
-use std::thread::current;
+
 
 use tui::{
     layout::Constraint,
-    style::{Color, Modifier, Style},
+    style::{Color, Style},
     widgets,
     widgets::{Block, Borders, Row, Table},
 };

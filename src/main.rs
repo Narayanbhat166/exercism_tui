@@ -1,5 +1,5 @@
 use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode, KeyEvent},
+    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
@@ -75,7 +75,7 @@ impl App {
             }
             Window::Exercises => {
                 let action = exercises_action::ExercisesAction::get_action(input);
-                let state_change = action.execute_action(self).await;
+                let _state_change = action.execute_action(self).await;
                 // if let Some(new_state) = state_change {
                 //     self.current_window = new_state
                 // }

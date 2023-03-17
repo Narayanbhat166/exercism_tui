@@ -1,11 +1,9 @@
-use std::thread::current;
+
 
 use crate::{
     api::{
         self,
-        models::{Exercise, Track},
     },
-    custom_widgets::listblock::StatefulList,
     fsm::{self, TransitionInput},
     App,
 };

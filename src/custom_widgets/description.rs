@@ -1,18 +1,17 @@
 use tui::{
-    layout::Constraint,
     style::{Color, Modifier, Style},
-    text::{Span, Spans, Text},
+    text::{Span, Spans},
     widgets::{self, BorderType, Paragraph},
-    widgets::{Block, Borders, Row, Table, Wrap},
+    widgets::{Block, Borders, Wrap},
 };
 
-use minimad::{parse_text, CompositeStyle, Compound, Line};
+use minimad::{CompositeStyle, Compound, Line};
 
-use crate::{api::models, App};
+use crate::{App};
 
 fn transform_md_line(element: Compound, md_style: CompositeStyle) -> Span {
     let style = match md_style {
-        CompositeStyle::Header(header_strength) => Style::default()
+        CompositeStyle::Header(_header_strength) => Style::default()
             .add_modifier(Modifier::BOLD)
             .fg(Color::Cyan),
         CompositeStyle::Code => Style::default().bg(Color::LightYellow).fg(Color::LightRed),
