@@ -4,7 +4,7 @@ use crossterm::{
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
 use dotenv::dotenv;
-use fsm::{exercises_action, tracks_actions, TransitionInput, Window};
+use fsm::{description_action, exercises_action, tracks_actions, TransitionInput, Window};
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
@@ -21,11 +21,29 @@ mod custom_widgets;
 mod fsm;
 mod layout;
 
+pub struct DescriptionData {
+    text: String,
+    scroll_offset: (u16, u16),
+    pub max_height: u16,
+    pub current_height: u16,
+}
+
+impl DescriptionData {
+    fn new() -> Self {
+        Self {
+            text: String::new(),
+            scroll_offset: (0, 0),
+            max_height: 0,
+            current_height: 0,
+        }
+    }
+}
+
 pub struct App {
     current_window: fsm::Window,
     tracks: custom_widgets::listblock::StatefulList<api::models::Track>,
     exercises: custom_widgets::listblock::StatefulList<api::models::Exercise>,
-    description: String,
+    description: DescriptionData,
 }
 
 #[tokio::main]
@@ -60,7 +78,7 @@ impl App {
             current_window: Window::Tracks,
             tracks: StatefulList::new(),
             exercises: StatefulList::new(),
-            description: String::new(),
+            description: DescriptionData::new(),
         }
     }
 
@@ -75,13 +93,19 @@ impl App {
             }
             Window::Exercises => {
                 let action = exercises_action::ExercisesAction::get_action(input);
-                let _state_change = action.execute_action(self).await;
-                // if let Some(new_state) = state_change {
-                //     self.current_window = new_state
-                // }
+                let state_change = action.execute_action(self).await;
+                if let Some(new_state) = state_change {
+                    self.current_window = new_state
+                }
             }
             Window::BottomBar => todo!(),
-            Window::Description => todo!(),
+            Window::Description => {
+                let action = description_action::DescriptionAction::get_action(input);
+                let state_change = action.execute_action(self).await;
+                if let Some(new_state) = state_change {
+                    self.current_window = new_state
+                }
+            }
             Window::Help => todo!(),
             Window::SortAndFilter => todo!(),
         }

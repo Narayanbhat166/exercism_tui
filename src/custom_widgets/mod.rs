@@ -26,6 +26,8 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
                 .border_type(BorderType::Rounded),
         );
 
+    app.description.max_height = layout.description.height;
+
     let tracks = tracks::tracks(app);
     let exercises = exercises::exercises(app);
 
@@ -36,11 +38,11 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
 
     frame.render_stateful_widget(tracks, layout.tracks, &mut app.tracks.state);
     frame.render_stateful_widget(exercises, layout.exercises, &mut app.exercises.state);
+    frame.render_widget(description::description(app), layout.description);
 
     frame.render_widget(top_main, layout.top_main);
     frame.render_widget(track_information, layout.tracks_information);
     frame.render_widget(exercise_information, layout.exercise_information);
-    frame.render_widget(description::description(app), layout.description);
     frame.render_widget(help_table, layout.help);
     frame.render_widget(bottom_bar, layout.logs);
 }

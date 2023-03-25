@@ -1,9 +1,5 @@
-
-
 use crate::{
-    api::{
-        self,
-    },
+    api::{self},
     fsm::{self, TransitionInput, Window},
     App,
 };
@@ -13,6 +9,7 @@ pub enum ExercisesAction {
     MoveDown,
     MoveUp,
     SelectExercise,
+    UnselectExercise,
     Nop,
 }
 
@@ -31,17 +28,18 @@ impl ExercisesAction {
                 let current_track = app.tracks.get_current_item().unwrap();
                 let current_exercise = app.exercises.get_current_item().unwrap();
 
-                let description = api::description::get_description::get_description(
+                let description_text = api::description::get_description::get_description(
                     current_track.slug,
                     current_exercise.slug,
                 )
                 .await
                 .unwrap();
 
-                app.description = description;
+                app.description.text = description_text;
 
                 Some(Window::Description)
             }
+            ExercisesAction::UnselectExercise => Some(Window::Tracks),
             ExercisesAction::Nop => None,
         }
     }
@@ -51,6 +49,7 @@ impl ExercisesAction {
             TransitionInput::Key(KeyCode::Down | KeyCode::Char('j')) => Self::MoveDown,
             TransitionInput::Key(KeyCode::Up | KeyCode::Char('k')) => Self::MoveUp,
             TransitionInput::Key(KeyCode::Char('l') | KeyCode::Enter) => Self::SelectExercise,
+            TransitionInput::Key(KeyCode::Char('h')) => Self::UnselectExercise,
             _ => Self::Nop,
         }
     }

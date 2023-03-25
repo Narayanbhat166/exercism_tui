@@ -19,6 +19,7 @@ pub fn exercises(app: &App) -> impl widgets::StatefulWidget<State = ListState> {
             .map(|item| ListItem::new(item.title.to_owned()))
             .collect::<Vec<_>>()
     };
+
     List::new(list_items)
         .block(
             Block::default()

@@ -1,9 +1,5 @@
-
-
 use crate::{
-    api::{
-        self,
-    },
+    api::{self},
     fsm::{self, TransitionInput},
     App,
 };

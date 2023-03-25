@@ -1,5 +1,3 @@
-
-
 use tui::{
     text::Text,
     widgets::{self, Paragraph},

@@ -1,13 +1,13 @@
 use tui::{
-    style::{Color, Modifier, Style, self},
+    style::{self, Color, Modifier, Style},
     text::{Span, Spans},
     widgets::{self, BorderType, Paragraph},
     widgets::{Block, Borders, Wrap},
 };
 
-use minimad::{CompositeStyle, Compound, Line, Composite};
+use minimad::{Composite, CompositeStyle, Compound, Line};
 
-use crate::{App};
+use crate::App;
 enum CompoundType {
     Code,
     NormalString,
@@ -21,7 +21,6 @@ fn get_compound_type(compound: &Compound) -> CompoundType {
 }
 
 fn transform_md_line(element: Composite) -> tui::text::Text {
-    
     let style = match element.style {
         CompositeStyle::Header(_header_strength) => Style::default()
             .add_modifier(Modifier::BOLD)
@@ -30,12 +29,17 @@ fn transform_md_line(element: Composite) -> tui::text::Text {
         _ => Style::default(),
     };
 
-    let spans = element.compounds.iter().map(|compound| {
-        match get_compound_type(&compound) {
-            CompoundType::Code => Span::styled(compound.src, style.add_modifier(Modifier::BOLD).fg(Color::Gray)),
+    let spans = element
+        .compounds
+        .iter()
+        .map(|compound| match get_compound_type(&compound) {
+            CompoundType::Code => Span::styled(
+                compound.src,
+                style.add_modifier(Modifier::BOLD).fg(Color::Gray),
+            ),
             CompoundType::NormalString => Span::styled(compound.src, style),
-        }
-    }).collect::<Vec<_>>();
+        })
+        .collect::<Vec<_>>();
 
     tui::text::Text::from(Spans::from(spans))
 }
@@ -47,7 +51,6 @@ pub fn parse_markdown(md_string: &String) -> tui::text::Text {
         match line {
             Line::Normal(line_data) => {
                 resulting_text.extend(transform_md_line(line_data));
-                
             }
             _ => {}
         }
@@ -56,11 +59,14 @@ pub fn parse_markdown(md_string: &String) -> tui::text::Text {
     resulting_text
 }
 
-pub fn description(app: &App) -> impl widgets::Widget + '_ {
-    let transformed_text = parse_markdown(&app.description);
+pub fn description(app: &mut App) -> impl widgets::Widget + '_ {
+    let transformed_text = parse_markdown(&app.description.text);
     // let transformed_text = tui::text::Text::styled("Hola `Hello`", style::Style::default());
+    app.description.current_height = u16::try_from(transformed_text.height())
+        .expect("Failed when converting usize to u16, overflow");
     Paragraph::new(transformed_text)
         .wrap(Wrap { trim: true })
+        .scroll(app.description.scroll_offset)
         .block(
             Block::default()
                 .title("Description")

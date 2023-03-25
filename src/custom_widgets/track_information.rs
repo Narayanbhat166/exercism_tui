@@ -1,5 +1,3 @@
-
-
 use tui::{
     layout::Constraint,
     style::{Color, Style},
