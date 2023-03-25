@@ -2,7 +2,7 @@
 mod tests {
 
     use crate::api::description::get_description::get_description;
-    use crate::custom_widgets::description::parse_markdown;
+    
 
     #[tokio::test]
     async fn test_description() {

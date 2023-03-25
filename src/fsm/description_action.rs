@@ -1,5 +1,4 @@
 use crate::{
-    api::{self},
     fsm::{self, TransitionInput, Window},
     App,
 };

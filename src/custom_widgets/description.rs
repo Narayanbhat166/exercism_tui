@@ -1,5 +1,5 @@
 use tui::{
-    style::{self, Color, Modifier, Style},
+    style::{Color, Modifier, Style},
     text::{Span, Spans},
     widgets::{self, BorderType, Paragraph},
     widgets::{Block, Borders, Wrap},

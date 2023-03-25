@@ -1,4 +1,4 @@
-use crate::api::exercises::get_exercises;
+
 
 #[cfg(test)]
 mod tests {
