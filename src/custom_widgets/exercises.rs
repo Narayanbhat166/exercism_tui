@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 use tui::{
     style::{Color, Modifier, Style},
     widgets::{self, ListState},
@@ -9,7 +11,8 @@ use crate::App;
 /// Exercises that are available and chosen
 /// Differenciate between done and not done
 /// TODO: provide a filter for the above functionality
-pub fn exercises(app: &App) -> impl widgets::StatefulWidget<State = ListState> {
+pub fn exercises(app: &Mutex<App>) -> impl widgets::StatefulWidget<State = ListState> {
+    let app = app.lock().unwrap();
     let list_items = if app.exercises.items.len() == 0 {
         vec![ListItem::new("Select a track")]
     } else {

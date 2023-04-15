@@ -1,14 +1,17 @@
 use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
+    event::{DisableMouseCapture, EnableMouseCapture, KeyCode, KeyEvent},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
 use dotenv::dotenv;
-use fsm::{
-    ExecuteTransition, Transition,
-    TransitionInput, Window,
+use fsm::{ExecuteTransition, Transition, TransitionInput, Window};
+use std::{
+    error::Error,
+    io,
+    sync::{mpsc, Arc, Mutex},
+    thread::{self},
+    time::Duration,
 };
-use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
     Frame, Terminal,
@@ -20,6 +23,7 @@ use crate::{
 };
 
 mod api;
+mod async_tasks;
 mod custom_widgets;
 mod fsm;
 mod layout;
@@ -86,49 +90,72 @@ impl App {
             description: DescriptionData::new(),
         }
     }
+}
 
-    pub async fn transition(&mut self, input: TransitionInput) {
-        let current_window = &self.current_window.clone();
-        let transition_action = current_window.get_action(input);
-        if let Some(new_window) = current_window.execute_action(self, transition_action).await {
-            self.current_window = new_window;
-        }
+pub async fn transition(app: Arc<Mutex<App>>, input: TransitionInput) {
+    let (transition_action, current_window) = {
+        // Those that are not async task, will return immediately,
+        // lock can be acquired on them without worries
+        let app = app.lock().unwrap();
+        let current_window = app.current_window.clone();
+        (current_window.get_action(input), current_window)
+    };
+
+    // The execute action function will update the state of app and involves i/o
+    // The function that requires
+    if let Some(new_window) = current_window
+        .execute_action(app.clone(), transition_action)
+        .await
+    {
+        let mut app = app.lock().unwrap();
+        app.current_window = new_window;
     }
 }
 
 async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     let tick_rate = Duration::from_millis(100);
-    let mut app = App::new();
-    // Send init event so that the current window can be initialized
-    app.transition(fsm::TransitionInput::Init).await;
+    let app = Arc::new(Mutex::new(App::new()));
+
+    let (sender, receiver) = mpsc::channel::<fsm::TransitionInput>();
+
+    let cloned_app = app.clone();
+
+    let network_calls_thread =
+        thread::spawn(move || async_tasks::network_calls_task(cloned_app, receiver));
 
     let mut last_tick = std::time::Instant::now();
 
     loop {
-        terminal.draw(|f| ui(f, &mut app))?;
-
         let timeout = tick_rate
             .checked_sub(last_tick.elapsed())
             .unwrap_or_else(|| std::time::Duration::from_secs(0));
+
+        terminal.draw(|f| ui(f, app.clone()))?;
 
         if crossterm::event::poll(timeout)? {
             if let crossterm::event::Event::Key(key_event) = crossterm::event::read()? {
                 // Quit on pressing q
                 if key_event.code == KeyCode::Char('q') {
+                    // Send close message to thread
+                    sender.send(fsm::TransitionInput::Quit).unwrap();
+                    network_calls_thread.join().unwrap();
+
                     return Ok(());
                 } else {
-                    app.transition(fsm::TransitionInput::Key(key_event.code))
-                        .await
+                    sender
+                        .send(fsm::TransitionInput::Key(key_event.code))
+                        .unwrap();
                 }
             }
         }
+
         if last_tick.elapsed() >= tick_rate {
             last_tick = std::time::Instant::now();
         }
     }
 }
 
-fn ui<B: Backend>(frame: &mut Frame<B>, app: &mut App) {
+fn ui<B: Backend>(frame: &mut Frame<B>, app: Arc<Mutex<App>>) {
     let main_terminal_size = frame.size();
 
     let layout = layout_divider(main_terminal_size);

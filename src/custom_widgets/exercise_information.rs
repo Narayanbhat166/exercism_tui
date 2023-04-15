@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 use tui::{
     text::Text,
     widgets::{self, Paragraph},
@@ -6,7 +8,8 @@ use tui::{
 
 use crate::App;
 
-pub fn exercise_information(app: &App) -> impl widgets::Widget {
+pub fn exercise_information(app: &Mutex<App>) -> impl widgets::Widget {
+    let app = app.lock().unwrap();
     let exercise_title;
     if let Some(current_exercise) = app.exercises.get_current_item() {
         exercise_title = current_exercise.title;

@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 use tui::{
     layout::Constraint,
     style::{Color, Style},
@@ -7,7 +9,8 @@ use tui::{
 
 use crate::App;
 
-pub fn track_information(app: &App) -> impl widgets::Widget {
+pub fn track_information(app: &Mutex<App>) -> impl widgets::Widget {
+    let app = app.lock().unwrap();
     if let Some(current_track) = app.tracks.get_current_item() {
         Table::new(vec![
             Row::new(vec![

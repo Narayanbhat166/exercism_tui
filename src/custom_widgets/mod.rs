@@ -7,6 +7,8 @@ pub mod listblock;
 pub mod track_information;
 pub mod tracks;
 
+use std::sync::{Arc, Mutex};
+
 use crate::layout::divider;
 use crate::App;
 
@@ -17,7 +19,11 @@ use tui::{
     Frame,
 };
 
-pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, app: &mut App) {
+pub fn draw_blocks<B: Backend>(
+    frame: &mut Frame<B>,
+    layout: divider::Layouts,
+    app: Arc<Mutex<App>>,
+) {
     let top_main = Paragraph::new("Welcome to the exercism cli")
         .alignment(Alignment::Center)
         .block(
@@ -26,7 +32,13 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
                 .border_type(BorderType::Rounded),
         );
 
-    app.description.max_height = layout.description.height;
+    // If possible try to avoid this
+    {
+        let mut app = app.lock().unwrap();
+        app.description.max_height = layout.description.height;
+    }
+
+    let app = app.as_ref();
 
     let tracks = tracks::tracks(app);
     let exercises = exercises::exercises(app);
@@ -36,9 +48,12 @@ pub fn draw_blocks<B: Backend>(frame: &mut Frame<B>, layout: divider::Layouts, a
     let bottom_bar = bottom_bar::bottom_bar();
     let help_table = help::help_table();
 
-    frame.render_stateful_widget(tracks, layout.tracks, &mut app.tracks.state);
-    frame.render_stateful_widget(exercises, layout.exercises, &mut app.exercises.state);
-    frame.render_widget(description::description(app), layout.description);
+    {
+        let mut app = app.lock().unwrap();
+        frame.render_stateful_widget(tracks, layout.tracks, &mut app.tracks.state);
+        frame.render_stateful_widget(exercises, layout.exercises, &mut app.exercises.state);
+        frame.render_widget(description::description(&mut app), layout.description);
+    }
 
     frame.render_widget(top_main, layout.top_main);
     frame.render_widget(track_information, layout.tracks_information);

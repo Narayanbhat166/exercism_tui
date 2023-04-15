@@ -1,3 +1,5 @@
+use std::sync::{Arc, Mutex};
+
 use async_trait::async_trait;
 use crossterm::event::KeyCode;
 
@@ -19,7 +21,11 @@ pub trait Transition {
 
 #[async_trait]
 pub trait ExecuteTransition {
-    async fn execute_action(&self, app: &mut App, action: TransitionAction) -> Option<Window>;
+    async fn execute_action(
+        &self,
+        app: Arc<Mutex<App>>,
+        action: TransitionAction,
+    ) -> Option<Window>;
 }
 
 #[derive(PartialEq, Clone)]
@@ -32,9 +38,11 @@ pub enum Window {
     SortAndFilter,
 }
 
+#[derive(PartialEq)]
 pub enum TransitionInput {
     Key(KeyCode),
     Init,
+    Quit,
 }
 
 pub enum TransitionAction {
@@ -63,12 +71,18 @@ impl Transition for Window {
 
 #[async_trait]
 impl ExecuteTransition for Window {
-    async fn execute_action(&self, app: &mut App, action: TransitionAction) -> Option<Window> {
+    async fn execute_action(
+        &self,
+        app: Arc<Mutex<App>>,
+        action: TransitionAction,
+    ) -> Option<Window> {
         match self {
             Window::Tracks => execute_track_action(app, action).await,
-            Window::Exercises => execute_exercise_action(app, action).await,
+            // Window::Exercises => execute_exercise_action(app, action).await,
+            Window::Exercises => todo!(),
             Window::BottomBar => todo!(),
-            Window::Description => execute_desctiption_action(app, action).await,
+            // Window::Description => execute_desctiption_action(app, action).await,
+            Window::Description => todo!(),
             Window::Help => todo!(),
             Window::SortAndFilter => todo!(),
         }
