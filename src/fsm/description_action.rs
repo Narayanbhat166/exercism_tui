@@ -1,8 +1,8 @@
 use crate::{
-    fsm::{self, TransitionInput, Window},
+    fsm::{self, Window},
     App,
 };
-use crossterm::event::KeyCode;
+
 
 use super::TransitionAction;
 

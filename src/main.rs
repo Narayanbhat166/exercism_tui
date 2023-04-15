@@ -5,7 +5,7 @@ use crossterm::{
 };
 use dotenv::dotenv;
 use fsm::{
-    description_action, exercises_action, tracks_actions, ExecuteTransition, Transition,
+    ExecuteTransition, Transition,
     TransitionInput, Window,
 };
 use std::{error::Error, io, time::Duration};

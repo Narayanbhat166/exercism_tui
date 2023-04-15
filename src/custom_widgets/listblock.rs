@@ -18,7 +18,7 @@ impl<T: Clone> StatefulList<T> {
         list
     }
 
-    pub fn with_items(items: Vec<T>) -> StatefulList<T> {
+    pub fn _with_items(items: Vec<T>) -> StatefulList<T> {
         let mut list = StatefulList {
             state: ListState::default(),
             items,
@@ -63,7 +63,7 @@ impl<T: Clone> StatefulList<T> {
         self.items.get(self.selected).map(|item| item.clone())
     }
 
-    pub fn unselect(&mut self) {
+    pub fn _unselect(&mut self) {
         self.state.select(None)
     }
 
@@ -71,5 +71,5 @@ impl<T: Clone> StatefulList<T> {
         self.items.extend(items)
     }
 
-    pub fn nop(&mut self) {}
+    pub fn _nop(&mut self) {}
 }
