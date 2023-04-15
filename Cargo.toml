@@ -17,6 +17,7 @@ dotenv               = "0.15.0"
 strum = {version = "0.24.1" , features = ["derive"]}
 base64 = "0.21.0"
 minimad = "0.12.0"
+async-trait = "0.1.68"
 
 [features]
 default = ["mock"]

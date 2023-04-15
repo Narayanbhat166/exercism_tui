@@ -4,7 +4,10 @@ use crossterm::{
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
 use dotenv::dotenv;
-use fsm::{description_action, exercises_action, tracks_actions, TransitionInput, Window};
+use fsm::{
+    description_action, exercises_action, tracks_actions, ExecuteTransition, Transition,
+    TransitionInput, Window,
+};
 use std::{error::Error, io, time::Duration};
 use tui::{
     backend::{Backend, CrosstermBackend},
@@ -48,7 +51,9 @@ pub struct App {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
+    // Get the exercism token
     dotenv().ok();
+
     enable_raw_mode()?;
     let mut stdout = io::stdout();
     execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
@@ -83,31 +88,10 @@ impl App {
     }
 
     pub async fn transition(&mut self, input: TransitionInput) {
-        match self.current_window {
-            Window::Tracks => {
-                let action = tracks_actions::TrackActions::get_action(input);
-                let state_change = action.execute_action(self).await;
-                if let Some(new_state) = state_change {
-                    self.current_window = new_state
-                }
-            }
-            Window::Exercises => {
-                let action = exercises_action::ExercisesAction::get_action(input);
-                let state_change = action.execute_action(self).await;
-                if let Some(new_state) = state_change {
-                    self.current_window = new_state
-                }
-            }
-            Window::BottomBar => todo!(),
-            Window::Description => {
-                let action = description_action::DescriptionAction::get_action(input);
-                let state_change = action.execute_action(self).await;
-                if let Some(new_state) = state_change {
-                    self.current_window = new_state
-                }
-            }
-            Window::Help => todo!(),
-            Window::SortAndFilter => todo!(),
+        let current_window = &self.current_window.clone();
+        let transition_action = current_window.get_action(input);
+        if let Some(new_window) = current_window.execute_action(self, transition_action).await {
+            self.current_window = new_window;
         }
     }
 }
@@ -115,6 +99,7 @@ impl App {
 async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     let tick_rate = Duration::from_millis(100);
     let mut app = App::new();
+    // Send init event so that the current window can be initialized
     app.transition(fsm::TransitionInput::Init).await;
 
     let mut last_tick = std::time::Instant::now();
@@ -128,6 +113,7 @@ async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
 
         if crossterm::event::poll(timeout)? {
             if let crossterm::event::Event::Key(key_event) = crossterm::event::read()? {
+                // Quit on pressing q
                 if key_event.code == KeyCode::Char('q') {
                     return Ok(());
                 } else {
