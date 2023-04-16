@@ -7,7 +7,7 @@ use tui::{
 
 use minimad::{Composite, CompositeStyle, Compound, Line};
 
-use crate::App;
+use crate::{fsm::Window, App};
 enum CompoundType {
     Code,
     NormalString,
@@ -61,16 +61,40 @@ pub fn parse_markdown(md_string: &String) -> tui::text::Text {
 
 pub fn description(app: &mut App) -> impl widgets::Widget + '_ {
     let transformed_text = parse_markdown(&app.description.text);
-    // let transformed_text = tui::text::Text::styled("Hola `Hello`", style::Style::default());
     app.description.current_height = u16::try_from(transformed_text.height())
         .expect("Failed when converting usize to u16, overflow");
+
+    let border_style = if app.current_window == Window::Description {
+        Style::default().fg(Color::Cyan)
+    } else {
+        Style::default().fg(Color::Gray)
+    };
+
+    let current_track = app.tracks.get_current_item();
+    let current_exercise = app.exercises.get_current_item();
+
+    let description_title = if app.current_window == Window::Description {
+        current_track
+            .zip(current_exercise)
+            .map(|(track, exercise)| {
+                format!(
+                    "Description Track: [{}] Exercise: [{}]",
+                    track.title, exercise.title
+                )
+            })
+            .unwrap_or("Description".to_string())
+    } else {
+        "Description".to_string()
+    };
+
     Paragraph::new(transformed_text)
         .wrap(Wrap { trim: true })
         .scroll(app.description.scroll_offset)
         .block(
             Block::default()
-                .title("Description")
+                .title(description_title)
                 .borders(Borders::ALL)
-                .border_type(BorderType::Rounded),
+                .border_type(BorderType::Rounded)
+                .border_style(border_style),
         )
 }

@@ -78,11 +78,9 @@ impl ExecuteTransition for Window {
     ) -> Option<Window> {
         match self {
             Window::Tracks => execute_track_action(app, action).await,
-            // Window::Exercises => execute_exercise_action(app, action).await,
-            Window::Exercises => todo!(),
+            Window::Exercises => execute_exercise_action(app, action).await,
             Window::BottomBar => todo!(),
-            // Window::Description => execute_desctiption_action(app, action).await,
-            Window::Description => todo!(),
+            Window::Description => execute_desctiption_action(app, action).await,
             Window::Help => todo!(),
             Window::SortAndFilter => todo!(),
         }

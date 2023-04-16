@@ -1,5 +1,5 @@
 use crossterm::{
-    event::{DisableMouseCapture, EnableMouseCapture, KeyCode, KeyEvent},
+    event::{DisableMouseCapture, EnableMouseCapture, KeyCode},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
@@ -51,6 +51,7 @@ pub struct App {
     tracks: custom_widgets::listblock::StatefulList<api::models::Track>,
     exercises: custom_widgets::listblock::StatefulList<api::models::Exercise>,
     description: DescriptionData,
+    bottom_bar: Option<String>,
 }
 
 #[tokio::main]
@@ -88,6 +89,7 @@ impl App {
             tracks: StatefulList::new(),
             exercises: StatefulList::new(),
             description: DescriptionData::new(),
+            bottom_bar: None,
         }
     }
 }
@@ -101,8 +103,7 @@ pub async fn transition(app: Arc<Mutex<App>>, input: TransitionInput) {
         (current_window.get_action(input), current_window)
     };
 
-    // The execute action function will update the state of app and involves i/o
-    // The function that requires
+    // The execute action function will update the state of app and involves I/O
     if let Some(new_window) = current_window
         .execute_action(app.clone(), transition_action)
         .await
@@ -136,8 +137,10 @@ async fn run_app<B: Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
             if let crossterm::event::Event::Key(key_event) = crossterm::event::read()? {
                 // Quit on pressing q
                 if key_event.code == KeyCode::Char('q') {
-                    // Send close message to thread
+                    // Send close message to thread for graceful shutdown
                     sender.send(fsm::TransitionInput::Quit).unwrap();
+
+                    // Wait untill the thread quits successfully
                     network_calls_thread.join().unwrap();
 
                     return Ok(());

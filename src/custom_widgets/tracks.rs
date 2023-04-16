@@ -10,13 +10,15 @@ use crate::{fsm::Window, App};
 
 /// Tracks that are available and chosen
 /// Differenciate between available and chosen
-/// TODO: provide a filter for the above functionality, and sort
+// TODO: provide a filter for the above functionality, and sort
 pub fn tracks(app: &Mutex<App>) -> impl widgets::StatefulWidget<State = ListState> {
     let app = app.lock().unwrap();
-    let color = if app.current_window == Window::Tracks {
-        Style::default().fg(Color::White)
+
+    // TODO: Move this logic to a utility function. DRY principle
+    let (border_style, highlight_symbol) = if app.current_window == Window::Tracks {
+        (Style::default().fg(Color::Cyan), "█ ")
     } else {
-        Style::default().fg(Color::Gray)
+        (Style::default().fg(Color::Gray), "  ")
     };
     let track_titles = app
         .tracks
@@ -30,14 +32,13 @@ pub fn tracks(app: &Mutex<App>) -> impl widgets::StatefulWidget<State = ListStat
             Block::default()
                 .borders(Borders::ALL)
                 .border_type(BorderType::Rounded)
-                .border_style(Style::default().fg(Color::Cyan))
+                .border_style(border_style)
                 .title("Tracks"),
         )
-        .style(color)
         .highlight_style(
             Style::default()
                 .add_modifier(Modifier::ITALIC)
                 .fg(Color::Cyan),
         )
-        .highlight_symbol("█ ")
+        .highlight_symbol(highlight_symbol)
 }

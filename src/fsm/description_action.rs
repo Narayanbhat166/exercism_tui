@@ -1,15 +1,18 @@
+use std::sync::{Arc, Mutex};
+
 use crate::{
     fsm::{self, Window},
     App,
 };
 
-
 use super::TransitionAction;
 
 pub async fn execute_desctiption_action(
-    app: &mut App,
+    app: Arc<Mutex<App>>,
     action: TransitionAction,
 ) -> Option<fsm::Window> {
+    // This does not involve any I/O. All actions happen immediately
+    let mut app = app.lock().unwrap();
     match action {
         TransitionAction::MoveDown => {
             // Check if text is overflowing, only then allow this

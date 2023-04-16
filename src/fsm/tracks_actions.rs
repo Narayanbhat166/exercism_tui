@@ -20,19 +20,30 @@ pub async fn execute_track_action(
             None
         }
         TransitionAction::Init => {
+            {
+                let mut app = app.lock().unwrap();
+                app.bottom_bar = Some("Fetching tracks".to_string());
+            }
+
             // Involves I/O
             let all_tracks = api::tracks::get_tracks::get_tracks().await.unwrap();
 
             let mut app = app.lock().unwrap();
             app.tracks.add_items(all_tracks.tracks);
             app.tracks.state.select(Some(0));
+            app.bottom_bar = None;
 
             None
         }
         TransitionAction::Select => {
             let current_track = {
-                let app = app.lock().unwrap();
-                app.tracks.get_current_item().unwrap()
+                let mut app = app.lock().unwrap();
+                let current_track = app.tracks.get_current_item().unwrap();
+                app.bottom_bar = Some(format!(
+                    "Fetching exercises for {} track",
+                    current_track.title
+                ));
+                current_track
             };
 
             // This is an async task and involves I/O.
@@ -46,6 +57,7 @@ pub async fn execute_track_action(
             // This will not block and happen immediately
             {
                 let mut app = app.lock().unwrap();
+                app.bottom_bar = None;
                 app.exercises.add_items(exercises.exercises);
                 app.exercises.state.select(Some(0));
             }

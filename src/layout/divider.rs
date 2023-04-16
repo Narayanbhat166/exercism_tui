@@ -19,7 +19,7 @@ pub fn layout_divider(main_terminal_size: Rect) -> Layouts {
             [
                 Constraint::Length(4),
                 Constraint::Min(10),
-                Constraint::Length(3),
+                Constraint::Length(1),
             ]
             .as_ref(),
         )

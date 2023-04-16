@@ -45,7 +45,7 @@ pub fn draw_blocks<B: Backend>(
 
     let track_information = track_information::track_information(app);
     let exercise_information = exercise_information::exercise_information(app);
-    let bottom_bar = bottom_bar::bottom_bar();
+    let bottom_bar = bottom_bar::bottom_bar(app);
     let help_table = help::help_table();
 
     {
@@ -59,5 +59,9 @@ pub fn draw_blocks<B: Backend>(
     frame.render_widget(track_information, layout.tracks_information);
     frame.render_widget(exercise_information, layout.exercise_information);
     frame.render_widget(help_table, layout.help);
-    frame.render_widget(bottom_bar, layout.logs);
+    // Draw the throbber onyl if there are some logs to be printed
+    // This can happen if there is some network activity going on
+    if let Some(bottom_widget) = bottom_bar {
+        frame.render_widget(bottom_widget, layout.logs);
+    }
 }
